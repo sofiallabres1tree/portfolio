@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/Portfolio%20Hero.dc.html" }
+  ],
+  "redirects": [
+    { "source": "/Portfolio%20Hero.dc.html", "destination": "/", "permanent": false },
+    { "source": "/Portfolio Hero.dc.html", "destination": "/", "permanent": false }
+  ]
+}

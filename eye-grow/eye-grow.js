@@ -2,19 +2,18 @@
 (function () {
   const BASE = (document.currentScript && document.currentScript.src.replace(/[^/]*$/, '')) || 'eye-grow/';
 
+  // The page framework can render #eye-grow more than once (and throw early copies away),
+  // so keep watching and mount into whichever copy is live and still empty.
   function whenMounted(cb) {
-    const found = document.getElementById('eye-grow');
-    if (found) return cb(found);
-    const mo = new MutationObserver(() => {
+    const scan = () => {
       const el = document.getElementById('eye-grow');
-      if (el) { mo.disconnect(); cb(el); }
-    });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
+      if (el && el.isConnected && !el.querySelector('canvas')) cb(el);
+    };
+    scan();
+    new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
   }
 
   whenMounted(async (piece) => {
-    if (piece.dataset.mounted) return;
-    piece.dataset.mounted = '1';
     const canvas = document.createElement('canvas');
     canvas.width = 1303; canvas.height = 1608;
     canvas.style.cssText = 'display: block; width: 100%; height: 100%;';
