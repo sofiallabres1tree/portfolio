@@ -112,6 +112,11 @@
       return EYES.some((e) => Math.hypot(fx - e[0], (fy - e[1]) * r.height / r.width) < EYE_HIT);
     }
     function onMove(ev) {
+      // touch: press and hold anywhere on the piece to grow, release to shrink
+      if (ev.pointerType !== 'mouse') {
+        if (ev.type === 'pointerdown') { mode = 'grow'; hint.style.opacity = '0'; kick(); }
+        return;
+      }
       if (onEye(ev)) { mode = 'grow'; hint.style.opacity = '0'; }
       else if (mode === 'grow') mode = 'hold';
       kick();
@@ -123,6 +128,7 @@
     piece.addEventListener('pointerleave', onLeave);
     piece.addEventListener('pointercancel', onLeave);
     piece.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') onLeave(); });
+    piece.addEventListener('contextmenu', (e) => e.preventDefault());   // no long-press menu on phones
 
     function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
     function frame(now) {

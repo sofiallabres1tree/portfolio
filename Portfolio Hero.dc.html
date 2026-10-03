@@ -16,25 +16,46 @@
   * { box-sizing: border-box; }
   a { color: #14130f; text-decoration: none; }
   a:hover { color: #e8402a; }
+  /* laptop+: eyes peek out behind the "Ll" of Llabres (--eye-x/--eye-y are set from the page script) */
+  @media (min-width: 900px) {
+    /* no stacking context on the wrapper, so the canvas can sit under the name while the hint sits over it */
+    .eye-wrap { z-index: auto !important; }
+    .eye-wrap .eye-box { position: absolute; left: calc(var(--eye-x, 75vw) - var(--w) * 0.666); top: calc(var(--eye-y, 60vh) - var(--w) * 1608 / 1303 * 0.384); }
+    .eye-wrap #eye-grow { position: relative; z-index: 0; }
+    .eye-wrap [data-eye-hint] { z-index: 2; }
+  }
+  /* small-viewport units keep the name above the phone's browser bar; --name-lift adds room below it */
+  .hero-stage { height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; }
+  .eye-wrap { height: 100vh !important; height: 100svh !important; }
+  :root { --name-lift: 0px; }
+  @media (max-width: 899px) { :root { --name-lift: 18px; } }
+  /* eye piece: as tall as the space between header and name allows, never wider than the screen */
+  .eye-box { position: relative; --vh: 100vh; --gap: calc(clamp(64px, 9vh, 96px) + min(13.5vw, 25vh) * 1.72 + 72px + var(--name-lift)); --w: min(100%, calc((var(--vh) - var(--gap)) * 1303 / 1608)); width: var(--w); flex: none; }
+  @supports (height: 100svh) { .eye-box { --vh: 100svh; } }
+  @media (min-width: 900px) { .eye-box { --gap: clamp(64px, 9vh, 96px); --w: calc((var(--vh) - var(--gap)) * 1303 / 1608); } }
+  .hint-touch { display: none; }
+  @media (hover: none) { .hint-touch { display: inline; } .hint-hover { display: none; } }
 </style>
 <script src="./cursor.js"></script>
 <script src="./eye-grow/eye-grow.js"></script>
 </helmet>
 <div ref="{{ rootRef }}" style="position: relative; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
 
-  <div aria-hidden="true" style="position: sticky; top: 0; height: 100vh; margin-bottom: -100vh; z-index: 1; overflow: hidden; pointer-events: none;">
+  <div aria-hidden="true" class="hero-stage" style="position: sticky; top: 0; z-index: 1; overflow: hidden; pointer-events: none;">
     <sc-if value="{{ showGrain }}" hint-placeholder-val="{{ true }}">
       <div style="position: absolute; inset: 0; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
     </sc-if>
-    <div style="position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 clamp(6px, 1vw, 16px) clamp(4px, 0.8vh, 10px);">
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 clamp(6px, 1vw, 16px) calc(clamp(4px, 0.8vh, 10px) + var(--name-lift));">
       <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(-0.03em);">S</span><span style="display: inline-block; transform: translateY(0.03em);">o</span><span style="display: inline-block; transform: translateY(-0.02em);">f</span><span style="display: inline-block; transform: translateY(0.035em);">i</span><span style="display: inline-block; transform: translateY(-0.03em);">a</span></div>
-      <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(0.03em);">L</span><span style="display: inline-block; transform: translateY(-0.03em);">l</span><span style="display: inline-block; transform: translateY(0.035em);">a</span><span style="display: inline-block; transform: translateY(-0.02em);">b</span><span style="display: inline-block; transform: translateY(0.035em);">r</span><span style="display: inline-block; transform: translateY(-0.03em);">e</span><span style="display: inline-block; transform: translateY(0.025em);">s</span></div>
+      <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span data-ll="" style="display: inline-block; transform: translateY(0.03em);">L</span><span data-ll="" style="display: inline-block; transform: translateY(-0.03em);">l</span><span style="display: inline-block; transform: translateY(0.035em);">a</span><span style="display: inline-block; transform: translateY(-0.02em);">b</span><span style="display: inline-block; transform: translateY(0.035em);">r</span><span style="display: inline-block; transform: translateY(-0.03em);">e</span><span style="display: inline-block; transform: translateY(0.025em);">s</span></div>
     </div>
   </div>
 
-  <div style="position: absolute; top: 0; left: 0; right: 0; height: 100vh; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(64px, 9vh, 96px) 16px calc(min(13.5vw, 25vh) * 1.72 + 72px); pointer-events: none;">
-    <div id="eye-grow" role="img" aria-label="Crochet eyes that grow into a face on hover" style="height: 100%; max-width: 100%; aspect-ratio: 1303 / 1608; touch-action: pan-y; pointer-events: auto;"></div>
-    <span data-eye-hint="" style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: clamp(10px, 0.95vw, 13px); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #14130f; transition: opacity 0.6s;">hover an eye</span>
+  <div class="eye-wrap" style="position: absolute; top: 0; left: 0; right: 0; height: 100vh; z-index: 2; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(64px, 9vh, 96px) 16px calc(min(13.5vw, 25vh) * 1.72 + 72px + var(--name-lift)); pointer-events: none;">
+    <div class="eye-box" style="aspect-ratio: 1303 / 1608;">
+      <div id="eye-grow" role="img" aria-label="Crochet eyes that grow into a face on hover" style="width: 100%; height: 100%; touch-action: pan-y; pointer-events: auto; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;"></div>
+      <span data-eye-hint="" style="position: absolute; left: 66.6%; top: 49%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; font-family: 'IBM Plex Mono', monospace; font-size: clamp(10px, 0.95vw, 13px); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #14130f; transition: opacity 0.6s;"><span class="hint-hover">hover over me</span><span class="hint-touch">click me</span></span>
+    </div>
   </div>
 
   <div style="position: relative; z-index: 2; display: flex; flex-direction: column; padding: 100vh 0 40vh; pointer-events: none;">
@@ -92,7 +113,7 @@
         <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a">LinkedIn</a>
       </nav>
     </header>
-    <div style="position: absolute; left: 0; right: 0; bottom: calc(min(13.5vw, 25vh) * 1.72 + 18px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px clamp(24px, 8vw, 120px); padding: 0 clamp(16px, 2vw, 32px);">
+    <div style="position: absolute; left: 0; right: 0; bottom: calc(min(13.5vw, 25vh) * 1.72 + 18px + var(--name-lift)); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px clamp(24px, 8vw, 120px); padding: 0 clamp(16px, 2vw, 32px);">
       <span>UCLA student &mdash; open for commissions</span>
       <a href="mailto:sofiallabres1@g.ucla.edu" style="pointer-events: auto;">sofiallabres1@g.ucla.edu</a>
       <span style="margin-left: auto;">LA &amp; Bay Area &copy; 2026</span>
@@ -104,7 +125,18 @@
 class Component extends DCLogic {
   constructor(props) { super(props); this.root = React.createRef(); }
   componentDidMount() {
-    const el = this.root.current; if (!el || !("IntersectionObserver" in window)) return;
+    const el = this.root.current; if (!el) return;
+    this.placeEyes = () => {
+      const ls = el.querySelectorAll("[data-ll]"); if (ls.length < 2) return;
+      const l = ls[1].getBoundingClientRect();
+      // the gap between the eyes sits on the "l"; the eyes peek out just behind the tops of the Ls
+      el.style.setProperty("--eye-x", ((l.left + l.right) / 2) + "px");
+      el.style.setProperty("--eye-y", l.top + "px");
+    };
+    this.placeEyes();
+    document.fonts && document.fonts.ready.then(this.placeEyes);
+    window.addEventListener("resize", this.placeEyes);
+    if (!("IntersectionObserver" in window)) return;
     const nodes = [...el.querySelectorAll("[data-reveal]")];
     this.io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { e.target.style.opacity = "1"; e.target.style.transform = "none"; this.io.unobserve(e.target); }
@@ -117,7 +149,7 @@ class Component extends DCLogic {
       this.io.observe(n);
     });
   }
-  componentWillUnmount() { this.io && this.io.disconnect(); }
+  componentWillUnmount() { this.io && this.io.disconnect(); window.removeEventListener("resize", this.placeEyes); }
   renderVals() {
     return { rootRef: this.root, showGrain: this.props.showGrain ?? true };
   }
