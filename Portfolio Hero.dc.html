@@ -16,8 +16,8 @@
   * { box-sizing: border-box; }
   a { color: #14130f; text-decoration: none; }
   a:hover { color: #e8402a; }
-  /* laptop+: eyes peek out behind the "Ll" of Llabres (--eye-x/--eye-y are set from the page script) */
-  @media (min-width: 900px) {
+  /* mouse/trackpad screens: eyes peek out behind the "Ll" of Llabres (--eye-x/--eye-y are set from the page script) */
+  @media (hover: hover) and (min-width: 600px) {
     /* no stacking context on the wrapper, so the canvas can sit under the name while the hint sits over it */
     .eye-wrap { z-index: auto !important; }
     .eye-wrap .eye-box { position: absolute; left: calc(var(--eye-x, 75vw) - var(--w) * 0.666); top: calc(var(--eye-y, 60vh) - var(--w) * 1608 / 1303 * 0.384); }
@@ -28,11 +28,11 @@
   .hero-stage { height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; }
   .eye-wrap { height: 100vh !important; height: 100svh !important; }
   :root { --name-lift: 0px; }
-  @media (max-width: 899px) { :root { --name-lift: 18px; } }
+  @media (hover: none) { :root { --name-lift: 18px; } }
   /* eye piece: as tall as the space between header and name allows, never wider than the screen */
   .eye-box { position: relative; --vh: 100vh; --gap: calc(clamp(64px, 9vh, 96px) + min(13.5vw, 25vh) * 1.72 + 72px + var(--name-lift)); --w: min(100%, calc((var(--vh) - var(--gap)) * 1303 / 1608)); width: var(--w); flex: none; }
   @supports (height: 100svh) { .eye-box { --vh: 100svh; } }
-  @media (min-width: 900px) { .eye-box { --gap: clamp(64px, 9vh, 96px); --w: calc((var(--vh) - var(--gap)) * 1303 / 1608); } }
+  @media (hover: hover) and (min-width: 600px) { .eye-box { --gap: clamp(64px, 9vh, 96px); --w: calc((var(--vh) - var(--gap)) * 1303 / 1608); } }
   .hint-touch { display: none; }
   @media (hover: none) { .hint-touch { display: inline; } .hint-hover { display: none; } }
 </style>
