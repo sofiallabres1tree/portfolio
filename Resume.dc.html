@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Sofia Llabres — Resume</title>
+<style>html, body { margin: 0; padding: 0; background: #ede4d0; } a { color: #e8402a; } a:hover { color: #14130f; }</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div style="min-height: 100vh; background: #ede4d0; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: clamp(24px, 5vw, 64px) 16px; box-sizing: border-box;">
+  <a href="About.dc.html" aria-label="Go back to About" style="position: fixed; left: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 40px); z-index: 10; width: clamp(110px, 12vw, 160px); height: clamp(110px, 12vw, 160px); border-radius: 50%; background: #ff7300; box-shadow: 0 10px 30px rgba(255, 115, 0, 0.35); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #f7f1c9; font-family: 'IBM Plex Mono', monospace; font-size: clamp(11px, 1vw, 13px); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: transform 0.35s cubic-bezier(.2,.9,.3,1.3), box-shadow 0.35s;" style-hover="transform: scale(1.08); box-shadow: 0 14px 40px rgba(255, 115, 0, 0.5); color: #f7f1c9;">&larr; Back</a>
+  <div ref="{{ pagesRef }}" style="display: flex; flex-direction: column; align-items: center; gap: 24px; width: min(100%, 850px);"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  pagesRef = React.createRef();
+  componentDidMount() {
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+    s.onload = async () => {
+      const lib = window.pdfjsLib;
+      lib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      const pdf = await lib.getDocument("resume.pdf").promise;
+      const box = this.pagesRef.current; if (!box) return;
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const vp = page.getViewport({ scale: 2.5 });
+        const c = document.createElement("canvas");
+        c.width = vp.width; c.height = vp.height;
+        c.style.cssText = "display:block;width:100%;height:auto;background:#fff;box-shadow:0 2px 14px rgba(20,19,15,.12);";
+        box.appendChild(c);
+        await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+      }
+    };
+    document.head.appendChild(s);
+  }
+  renderVals() { return { pagesRef: this.pagesRef }; }
+}
+</script>
+</body>
+</html>

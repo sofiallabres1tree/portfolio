@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f4f3ef; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes drift { 0% { transform: translate3d(0,0,0) rotate(0deg); } 50% { transform: translate3d(0,-2%,0) rotate(180deg); } 100% { transform: translate3d(0,0,0) rotate(360deg); } }
+  @keyframes drift2 { 0% { transform: translate3d(0,0,0) rotate(0deg) scale(1); } 50% { transform: translate3d(2%,3%,0) rotate(-140deg) scale(1.08); } 100% { transform: translate3d(0,0,0) rotate(-360deg) scale(1); } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f4f3ef; color: #14130f; font-family: Archivo, Helvetica, Arial, sans-serif; padding: 28px clamp(16px, 4vw, 56px) 0; position: relative; overflow: hidden;">
+
+  <sc-if value="{{ showGrain }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.35; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.5'/></svg>&quot;);"></div>
+  </sc-if>
+
+  <header style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #6d6a60; position: relative; z-index: 2;">
+    <span>Novum Presents</span>
+    <span style="display: flex; gap: clamp(14px, 3vw, 34px);">
+      <a href="#about" style="color: #6d6a60;" style-hover="color: #14130f;">About</a>
+      <a href="#works" style="color: #6d6a60;" style-hover="color: #14130f;">Works</a>
+      <a href="#photography" style="color: #6d6a60;" style-hover="color: #14130f;">Photo</a>
+      <a href="#contact" style="color: #6d6a60;" style-hover="color: #14130f;">Contact</a>
+    </span>
+    <span>Portfolio &mdash; MMXXVI</span>
+  </header>
+
+  <main style="max-width: 1180px; margin: 0 auto; position: relative; z-index: 2;">
+
+    <section style="padding-top: clamp(40px, 7vw, 92px); text-align: center;">
+      <p style="margin: 0 0 clamp(14px, 2vw, 22px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: #8a8679;">Independent designer &nbsp;/&nbsp; Curator of moving things</p>
+
+      <h1 style="margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0; line-height: 0.88; font-size: clamp(54px, 12.2vw, 176px); letter-spacing: -0.02em;">
+        <span style="font-family: Archivo, sans-serif; font-weight: 800; transform: skewX(-7deg); display: inline-block;">S</span>
+        <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-style: italic;">o</span>
+        <span style="font-family: Archivo, sans-serif; font-weight: 900;">F</span>
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic; transform: skewX(-12deg); display: inline-block; margin: 0 0.06em 0 0.08em;">i</span>
+        <span style="font-family: 'Bodoni Moda', serif; font-weight: 800;">A</span>
+        <span style="width: clamp(14px, 2.4vw, 38px);"></span>
+        <span style="font-family: 'Bodoni Moda', serif; font-weight: 900;">L</span>
+        <span style="font-family: Archivo, sans-serif; font-weight: 300; font-style: italic; transform: skewX(-10deg); display: inline-block; margin: 0 0.05em 0 0.07em;">l</span>
+        <span style="font-family: 'Instrument Serif', serif;">a</span>
+        <span style="font-family: Archivo, sans-serif; font-weight: 800;">b</span>
+        <span style="font-family: 'Bodoni Moda', serif; font-weight: 500; font-style: italic; transform: skewX(-6deg); display: inline-block; margin: 0 0.04em 0 0.05em;">r</span>
+        <span style="font-family: Archivo, sans-serif; font-weight: 900;">e</span>
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic;">s</span>
+      </h1>
+
+      <p style="margin: clamp(18px, 2.6vw, 30px) auto 0; max-width: 46ch; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.5; color: #4b473e; text-wrap: pretty;">Creative portfolios built to grab the eye first and the heart a half&#8209;second later.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; align-items: center; padding: clamp(34px, 5.5vw, 70px) 0 clamp(24px, 3vw, 40px);">
+      <div style="position: relative; width: clamp(240px, 38vw, 420px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: radial-gradient(120% 120% at 28% 18%, #7f8ff2 0%, #5b7be8 28%, #3ba3c9 56%, #21bfae 78%, #16c4a0 100%); box-shadow: 0 40px 90px -30px rgba(38,80,120,0.55), inset 0 2px 30px rgba(255,255,255,0.35);">
+        <div style="position: absolute; width: 90%; height: 90%; left: -12%; top: 6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(126,86,232,0.9), rgba(126,86,232,0) 70%); filter: blur(18px); animation: drift 22s ease-in-out infinite;"></div>
+        <div style="position: absolute; width: 86%; height: 86%; right: -14%; bottom: -8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(28,214,181,0.95), rgba(28,214,181,0) 70%); filter: blur(20px); animation: drift2 28s ease-in-out infinite;"></div>
+        <div style="position: absolute; width: 60%; height: 60%; left: 22%; top: 34%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,138,110,0.55), rgba(255,138,110,0) 70%); filter: blur(26px); animation: drift 34s ease-in-out infinite reverse;"></div>
+        <div style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(100% 100% at 32% 20%, rgba(255,255,255,0.5), rgba(255,255,255,0) 42%);"></div>
+        <div style="position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 -30px 60px rgba(12,40,70,0.35);"></div>
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; color: #ffffff;">
+          <span style="width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.75); display: flex; align-items: center; justify-content: center;">
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: #ffffff;"></span>
+          </span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;">Hover Looker</span>
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(13px, 1.4vw, 18px);">Drag&#8209;hover the titles below</span>
+        </div>
+      </div>
+      <p style="margin: clamp(18px, 2.4vw, 28px) 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: #8a8679; border: 1px solid #ddd9cd; border-radius: 999px; padding: 7px 14px; background: #fbfaf7;">Cursor directions &mdash; move to preview</p>
+    </section>
+
+    <section id="works" style="max-width: 760px; margin: 0 auto; padding-bottom: clamp(50px, 7vw, 96px);">
+      <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #8a8679;">
+        <span>Archived Projects</span>
+        <span style="flex: 1; height: 1px; background: #e2ded2;"></span>
+        <span>05</span>
+      </div>
+
+      <div style="display: grid; gap: 2px;">
+        <div style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 14px; padding: 13px 8px; border-bottom: 1px solid #e6e2d6;" style-hover="background: #fbfaf7;">
+          <sc-if value="{{ showNumbers }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #a6a294;">01</span></sc-if>
+          <span style="font-size: clamp(17px, 2vw, 23px); letter-spacing: -0.01em; color: #4b473e;">Arcane Optics</span>
+          <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8679; border: 1px solid #e2ded2; border-radius: 999px; padding: 4px 9px;">Web One</span></sc-if>
+        </div>
+        <div style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 14px; padding: 13px 8px; border-bottom: 1px solid #e6e2d6;" style-hover="background: #fbfaf7;">
+          <sc-if value="{{ showNumbers }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #a6a294;">02</span></sc-if>
+          <span style="font-size: clamp(17px, 2vw, 23px); letter-spacing: -0.01em; color: #4b473e;">Komorebi Homes</span>
+          <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8679; border: 1px solid #e2ded2; border-radius: 999px; padding: 4px 9px;">Visual</span></sc-if>
+        </div>
+        <div style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 14px; padding: 15px 8px; border-bottom: 1px solid #14130f; background: #fbfaf7;">
+          <sc-if value="{{ showNumbers }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #14130f;">03</span></sc-if>
+          <span style="font-size: clamp(19px, 2.3vw, 27px); font-weight: 700; letter-spacing: -0.02em; color: #14130f;">Aether Lab</span>
+          <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #fbfaf7; background: #14130f; border-radius: 999px; padding: 4px 9px;">Futuristic</span></sc-if>
+        </div>
+        <div style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 14px; padding: 13px 8px; border-bottom: 1px solid #e6e2d6;" style-hover="background: #fbfaf7;">
+          <sc-if value="{{ showNumbers }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #a6a294;">04</span></sc-if>
+          <span style="font-size: clamp(17px, 2vw, 23px); letter-spacing: -0.01em; color: #4b473e;">Atelier Monolith</span>
+          <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8679; border: 1px solid #e2ded2; border-radius: 999px; padding: 4px 9px;">Studio Set</span></sc-if>
+        </div>
+        <div style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 14px; padding: 13px 8px; border-bottom: 1px solid #e6e2d6;" style-hover="background: #fbfaf7;">
+          <sc-if value="{{ showNumbers }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #a6a294;">05</span></sc-if>
+          <span style="font-size: clamp(17px, 2vw, 23px); letter-spacing: -0.01em; color: #4b473e;">Vivid Synthesis</span>
+          <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8679; border: 1px solid #e2ded2; border-radius: 999px; padding: 4px 9px;">Fluid</span></sc-if>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav style="position: relative; z-index: 2; border-top: 1px solid #14130f;">
+    <a href="#about" id="about" style="display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 18px; padding: clamp(22px, 3.4vw, 40px) clamp(16px, 4vw, 56px); border-bottom: 1px solid #ddd9cd;" style-hover="background: #14130f; color: #f4f3ef;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: inherit; opacity: 0.55;">01</span>
+      <span style="font-family: 'Bodoni Moda', serif; font-size: clamp(28px, 5vw, 62px); font-weight: 500; letter-spacing: -0.02em;">About Me</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">&#8599;</span>
+    </a>
+    <a href="#works" style="display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 18px; padding: clamp(22px, 3.4vw, 40px) clamp(16px, 4vw, 56px); border-bottom: 1px solid #ddd9cd;" style-hover="background: #14130f; color: #f4f3ef;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; opacity: 0.55;">02</span>
+      <span style="font-family: Archivo, sans-serif; font-size: clamp(28px, 5vw, 62px); font-weight: 800; letter-spacing: -0.035em;">Works</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px;">&#8599;</span>
+    </a>
+    <a href="#photography" id="photography" style="display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 18px; padding: clamp(22px, 3.4vw, 40px) clamp(16px, 4vw, 56px); border-bottom: 1px solid #ddd9cd;" style-hover="background: #14130f; color: #f4f3ef;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; opacity: 0.55;">03</span>
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(30px, 5.4vw, 66px); letter-spacing: -0.01em;">Photography</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px;">&#8599;</span>
+    </a>
+    <a href="#contact" id="contact" style="display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 18px; padding: clamp(22px, 3.4vw, 40px) clamp(16px, 4vw, 56px);" style-hover="background: #14130f; color: #f4f3ef;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; opacity: 0.55;">04</span>
+      <span style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(28px, 5vw, 62px); font-weight: 500; letter-spacing: -0.02em;">Contact Me</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px;">&#8599;</span>
+    </a>
+  </nav>
+
+  <footer style="position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 18px clamp(16px, 4vw, 56px) 26px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8679;">
+    <span>Sofia Llabres</span>
+    <span>Lisbon &mdash; Remote</span>
+    <span>hello@llabres.studio</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showTags&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Project list&quot;},&quot;showNumbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Project list&quot;},&quot;showGrain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Surface&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showTags: this.props.showTags ?? true,
+      showNumbers: this.props.showNumbers ?? true,
+      showGrain: this.props.showGrain ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #e8402a;">Works</a>
+      <a href="Photography.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Photography</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; padding: clamp(6px, 1.4vw, 18px) clamp(18px, 4vw, 54px) clamp(40px, 6vw, 90px);">
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">02 / Works &mdash; 12 projects, 2024&ndash;2026</p>
+    <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: clamp(64px, 17vw, 260px); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: inline-block; transform: translateY(-0.05em);">w</span>
+      <span style="display: inline-block; transform: translateY(0.05em);">o</span>
+      <span style="display: inline-block; transform: translateY(-0.04em);">r</span>
+      <span style="display: inline-block; transform: translateY(0.06em);">k</span>
+      <span style="display: inline-block; transform: translateY(-0.055em);">s</span>
+    </h1>
+
+    <nav id="top-index" style="margin-top: clamp(30px, 4.5vw, 64px); border-top: 1px solid #14130f; scroll-margin-top: 24px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="12">
+        <a href="{{ p.anchor }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ leave }}" style="display: grid; grid-template-columns: 44px minmax(0, 1fr) auto auto; align-items: center; gap: clamp(10px, 2vw, 24px); padding: clamp(10px, 1.3vw, 16px) 0; border-bottom: 1px solid #dfd6a8;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #9c9472;">{{ p.num }}</span>
+          <span style="font-size: clamp(18px, 2.4vw, 32px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.035em; transition: color 200ms ease; color: {{ p.color }};">{{ p.title }}</span>
+          <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}"><img src="{{ p.img }}" alt="" style="width: clamp(54px, 7vw, 92px); aspect-ratio: 3 / 2; object-fit: cover; display: block; opacity: {{ p.thumb }}; transition: opacity 240ms ease;" /></sc-if>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8262; min-width: 9ch; text-align: right;">{{ p.date }}</span>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="display: flex; flex-direction: column; gap: clamp(56px, 8vw, 120px); padding-top: clamp(56px, 8vw, 120px);">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <article id="{{ p.slug }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(20px, 4vw, 60px); align-items: end; scroll-margin-top: 24px;">
+          <div style="aspect-ratio: 4 / 3; overflow: hidden; background: #efe6b4;">
+            <sc-if value="{{ p.img }}" hint-placeholder-val="{{ false }}"><img src="{{ p.img }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover; display: block;" /></sc-if>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px; padding-bottom: 4px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">{{ p.num }} &nbsp;/&nbsp; {{ p.date }}</span>
+            <h2 style="margin: 0; font-size: clamp(32px, 5vw, 76px); font-weight: 500; line-height: 0.9; text-transform: uppercase; letter-spacing: -0.05em; text-wrap: balance;">{{ p.title }}</h2>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #E25600;">{{ p.medium }}</span>
+            <a href="#top-index" style="align-self: flex-start; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262; border-bottom: 1px solid #cdc498; padding-bottom: 3px;" style-hover="color: #e8402a;">Back to index &#8593;</a>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </main>
+
+  <div style="position: fixed; left: 0; top: 0; z-index: 5; pointer-events: none; width: clamp(100px, 19vw, 190px); aspect-ratio: 1; border-radius: 50%; box-shadow: 0 40px 90px -36px rgba(150,110,60,0.5); background: radial-gradient(120% 120% at 70% 14%, #ffd76a 0%, #ffb18a 22%, #ff9ab0 44%, #f0a6d8 62%, #b9c6f2 82%, #a8dcea 100%); opacity: 0.6; transform: {{ sphereTransform }};"></div>
+
+  <footer style="position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 16px clamp(18px, 4vw, 54px) 24px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn &#8599;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PASTELS = ["#d9607f", "#b866b8", "#6f87d4", "#c98a2a"];
+const PROJECTS = [
+  { title: "Crochet Tapestry", date: "May 2025", medium: "Textile / crochet", img: "uploads/gallery_images-1790202398817-6iu1.png" },
+  { title: "Masks", date: "January 2025", medium: "Poster / print", img: "uploads/gallery_images-1790202401547-4vcl.png" },
+  { title: "Aurelio", date: "April 2024", medium: "Charcoal drawing", img: "uploads/gallery_images-1790202407259-powd.png" },
+  { title: "Gaza Genocide Article", date: "May 2026", medium: "Editorial / magazine", img: "uploads/gallery_images-1790202412238-aaow.png" },
+  { title: "MuralCare Mural", date: "January 2025", medium: "Group mural", img: "uploads/gallery_images-1790202415006-kizh.png" },
+  { title: "Cardboard House Model", date: "October 2024", medium: "Architectural model", img: "uploads/gallery_images-1790202417446-yi01.png" },
+  { title: "Shelter Device", date: "April 2025", medium: "Product / object", img: "uploads/gallery_images-1790202420974-toi7.png" },
+  { title: "Trashcan CAD Demo", date: "June 2025", medium: "CAD / 3D", img: "uploads/gallery_images-1790202424717-w3xp.png" },
+  { title: "Juicer Product Demo", date: "August 2025", medium: "Product design", img: "uploads/gallery_images-1790202427519-jvgf.png" },
+  { title: "Venus Acrylic Painting", date: "November 2024", medium: "Acrylic on canvas", img: "uploads/gallery_images-1790202444278-n1lh.jpg" },
+  { title: "Bird Crochet Piece", date: "September 2026", medium: "Textile / crochet", img: "uploads/gallery_images-1790202549353-vkwh.png" },
+  { title: "Weaved In", date: "May 2026", medium: "Weaving", img: "uploads/gallery_images-1790202595868-5kdm.png" },
+];
+const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+class Component extends DCLogic {
+  state = { x: -9999, y: -9999, hovered: -1 };
+  componentDidMount() {
+    this.onMove = (e) => this.setState({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", this.onMove, { passive: true });
+    const id = decodeURIComponent((location.hash || "").slice(1));
+    if (id) setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24 });
+    }, 250);
+  }
+  componentWillUnmount() { window.removeEventListener("mousemove", this.onMove); }
+  renderVals() {
+    const { x, y, hovered } = this.state;
+    return {
+      sphereTransform: `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`,
+      leave: () => this.setState({ hovered: -1 }),
+      projects: PROJECTS.map((p, i) => ({
+        ...p,
+        num: String(i + 1).padStart(2, "0"),
+        slug: slug(p.title),
+        anchor: "#" + slug(p.title),
+        color: hovered === i ? PASTELS[i % 4] : "#14130f",
+        thumb: hovered === i ? 1 : 0,
+        enter: () => this.setState({ hovered: i }),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

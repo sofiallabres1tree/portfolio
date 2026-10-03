@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Caveat:wght@700&amp;display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div style="min-height: 100vh; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; padding: clamp(6px, 1.4vw, 18px) clamp(18px, 4vw, 54px) clamp(40px, 6vw, 90px);">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 clamp(18px, 2.4vw, 34px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">
+      <a href="Works.dc.html" style="color: #8a8262;" style-hover="color: #e8402a;">&#8592; Works</a>
+      <span>/</span>
+      <span>{{ num }} {{ name }}</span>
+      <span>/</span>
+      <span>{{ countLabel }}</span>
+    </div>
+    <h1 style="margin: 0; display: flex; flex-wrap: wrap; align-items: flex-end; font-size: clamp(48px, 12vw, 200px); font-weight: 500; line-height: 0.86; letter-spacing: -0.055em; color: #E25600;">
+      <sc-for list="{{ letters }}" as="l" hint-placeholder-count="8">
+        <span style="display: inline-block; white-space: pre; transform: {{ l.shift }};">{{ l.ch }}</span>
+      </sc-for>
+    </h1>
+
+    <div style="display: flex; flex-direction: column; gap: clamp(56px, 8vw, 120px); padding-top: clamp(40px, 6vw, 90px);">
+      <div style="width: 100%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: {{ gridCols }}; align-items: start; gap: clamp(56px, 8vw, 120px) clamp(24px, 3.4vw, 52px);">
+        <sc-for list="{{ items }}" as="p" hint-placeholder-count="3">
+          <article id="{{ p.slug }}" style="grid-column: {{ p.span }}; width: 100%; max-width: {{ p.artMaxW }}; justify-self: center; display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 18px); border-top: 1px solid #14130f; padding-top: clamp(14px, 1.8vw, 22px);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px;">
+              <h2 style="margin: 0; font-size: clamp(24px, 2.6vw, 38px); font-weight: 500; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.04em; color: #E25600; text-wrap: balance;">{{ p.title }}</h2>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: #8a8262;">{{ p.num }}</span>
+            </div>
+            <sc-if value="{{ p.embed }}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; z-index: 3; width: 100%;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(12px, 2.4vw, 40px); padding: clamp(20px, 3vw, 50px) 0; background: transparent;">
+                  <img src="works/eyes/eye-1-clean.png" alt="Crochet eye piece 1" onMouseEnter="{{ eye0.enter }}" onMouseLeave="{{ eye0.leave }}" draggable="false" style="display: block; width: clamp(110px, 18%, 230px); height: auto; background: transparent; cursor: pointer; transform: {{ eye0.t }}; opacity: {{ eye0.o }}; filter: {{ eye0.f }}; transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), opacity 0.3s, filter 0.3s;">
+                  <img src="works/eyes/eye-2-clean.png" alt="Crochet eye piece 2" onMouseEnter="{{ eye1.enter }}" onMouseLeave="{{ eye1.leave }}" draggable="false" style="display: block; width: clamp(100px, 16%, 210px); height: auto; background: transparent; cursor: pointer; transform: {{ eye1.t }}; opacity: {{ eye1.o }}; filter: {{ eye1.f }}; transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), opacity 0.3s, filter 0.3s;">
+                  <img src="works/eyes/eye-3-clean.png" alt="Crochet eye piece 3" onMouseEnter="{{ eye2.enter }}" onMouseLeave="{{ eye2.leave }}" draggable="false" style="display: block; width: clamp(100px, 16%, 210px); height: auto; background: transparent; cursor: pointer; transform: {{ eye2.t }}; opacity: {{ eye2.o }}; filter: {{ eye2.f }}; transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), opacity 0.3s, filter 0.3s;">
+                  <img src="works/eyes/eye-4-clean.png" alt="Crochet eye piece 4" onMouseEnter="{{ eye3.enter }}" onMouseLeave="{{ eye3.leave }}" draggable="false" style="display: block; width: clamp(90px, 14%, 190px); height: auto; background: transparent; cursor: pointer; transform: {{ eye3.t }}; opacity: {{ eye3.o }}; filter: {{ eye3.f }}; transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), opacity 0.3s, filter 0.3s;">
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.book }}" hint-placeholder-val="{{ false }}">
+              <div style="width: 100%; overflow: hidden; padding: clamp(10px, 2vw, 30px) 0;">
+                <div style="position: relative; width: min(100%, 960px); margin: 0 auto; aspect-ratio: 1000 / 760; perspective: 2400px; transform: translateX({{ bk.shift }}); transition: transform 0.9s cubic-bezier(.45,.05,.25,1);">
+                  <div onClick="{{ bk.prev }}" style="position: absolute; left: 0; top: 0; width: 50%; height: 100%; cursor: pointer; background-image: {{ bk.l.i }}; background-size: {{ bk.l.s }}; background-position: {{ bk.l.p }}; background-repeat: no-repeat;"></div>
+                  <div onClick="{{ bk.next }}" style="position: absolute; left: 50%; top: 0; width: 50%; height: 100%; cursor: pointer; background-image: {{ bk.r.i }}; background-size: {{ bk.r.s }}; background-position: {{ bk.r.p }}; background-repeat: no-repeat;"></div>
+                  <sc-if value="{{ bk.turning }}" hint-placeholder-val="{{ false }}">
+                    <div style="position: absolute; left: 50%; top: 0; width: 50%; height: 100%; transform-origin: 0% 50%; transform-style: preserve-3d; transform: rotateY({{ bk.rot }}deg); transition: transform 0.9s cubic-bezier(.45,.05,.25,1); pointer-events: none;">
+                      <div style="position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background-image: {{ bk.f.i }}; background-size: {{ bk.f.s }}; background-position: {{ bk.f.p }}; background-repeat: no-repeat;"></div>
+                      <div style="position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background-image: {{ bk.b.i }}; background-size: {{ bk.b.s }}; background-position: {{ bk.b.p }}; background-repeat: no-repeat;"></div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #14130f;">
+                <button type="button" onClick="{{ bk.prev }}" aria-label="Previous page" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #14130f; background: transparent; color: #14130f; font-size: 16px;" style-hover="background: #0077ff; border-color: #0077ff; color: #f7f1c9;">&#8592;</button>
+                <span style="min-width: 90px; text-align: center;">{{ bk.counter }}</span>
+                <button type="button" onClick="{{ bk.next }}" aria-label="Next page" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #14130f; background: transparent; color: #14130f; font-size: 16px;" style-hover="background: #0077ff; border-color: #0077ff; color: #f7f1c9;">&#8594;</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.anim }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: clamp(8px, 1.2vw, 18px); width: min(100%, 860px); margin: 0 auto clamp(8px, 1.2vw, 16px);">
+                <img src="works/sourdo/process-1.png" alt="Laser-cut rings on the cutter bed" style="display: block; width: 100%; height: auto;">
+                <img src="works/sourdo/process-2.png" alt="Stacked ring bowl, side view" style="display: block; width: 100%; height: auto;">
+                <img src="works/sourdo/process-3.png" alt="Stacked rings with loose rings in front" style="display: block; width: 100%; height: auto;">
+              </div>
+              <div style="position: relative; width: min(100%, 560px); margin: 0 auto; aspect-ratio: 395 / 523;">
+                <img src="works/sourdo/frame-1.png" alt="Boule Bowl opening, frame 1" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{ bo1 }}; transition: opacity 0.25s ease;">
+                <img src="works/sourdo/frame-2.png" alt="Boule Bowl opening, frame 2" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{ bo2 }}; transition: opacity 0.25s ease;">
+                <img src="works/sourdo/frame-3.png" alt="Boule Bowl opening, frame 3" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{ bo3 }}; transition: opacity 0.25s ease;">
+                <img src="works/sourdo/frame-4.png" alt="Boule Bowl opening, frame 4" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{ bo4 }}; transition: opacity 0.25s ease;">
+                <img src="works/sourdo/frame-5.png" alt="Boule Bowl opening, frame 5" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: {{ bo5 }}; transition: opacity 0.25s ease;">
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.deck }}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; width: 100%;">
+                <div ref="{{ p.deckRef }}" onScroll="{{ p.onScroll }}" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;">
+                  <sc-for list="{{ p.slides }}" as="sl" hint-placeholder-count="1">
+                    <div style="flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: 16 / 10;">
+                      <image-slot id="{{ sl.id }}" src="{{ sl.src }}" shape="rect" fit="contain" placeholder="Drop slide {{ sl.n }} for {{ p.title }}"></image-slot>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #14130f;">
+                  <span>{{ p.counter }}</span>
+                  <div style="display: flex; gap: 8px;">
+                    <button type="button" onClick="{{ p.prev }}" aria-label="Previous slide" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #14130f; background: transparent; color: #14130f; font-size: 16px;" style-hover="background: #0077ff; border-color: #0077ff; color: #f7f1c9;">&#8592;</button>
+                    <button type="button" onClick="{{ p.next }}" aria-label="Next slide" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #14130f; background: transparent; color: #14130f; font-size: 16px;" style-hover="background: #0077ff; border-color: #0077ff; color: #f7f1c9;">&#8594;</button>
+                    <button type="button" onClick="{{ p.full }}" aria-label="View larger" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #14130f; background: transparent; color: #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="background: #0077ff; border-color: #0077ff; color: #f7f1c9;">Enlarge &#8599;</button>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.filled }}" hint-placeholder-val="{{ false }}">
+              {{ p.pic }}
+            </sc-if>
+            <sc-if value="{{ p.ppt }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: clamp(8px, 1.2vw, 18px);">
+                <img src="works/textiles/ppt-sketch.png" alt="Paper Past Times weave sketch" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                <img src="works/textiles/ppt-rug.png" alt="Paper Past Times painted panel in progress" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                <video ref="{{ muteRef }}" src="works/textiles/paper-past-times.mp4" autoplay="" muted="{{ true }}" loop="" playsInline="{{ true }}" style="display: block; width: 100%; height: 100%; object-fit: cover;"></video>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.hasImgs }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: {{ p.imgCols }}; align-items: center; gap: clamp(10px, 2vw, 30px); width: 100%; max-width: {{ p.imgMaxW }}; margin: 0 auto;">
+                <sc-for list="{{ p.imgList }}" as="im" hint-placeholder-count="0">
+                  {{ im.el }}
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.manta }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 1.4vw, 20px);">
+                <img src="works/sculptures/manta-1.png" alt="Manta Ray sculpture from above" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                <img src="works/sculptures/manta-2.png" alt="Manta Ray sculpture suspended overhead" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                <img src="works/sculptures/manta-3.png" alt="Manta Ray sculpture lit from within" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                <img src="works/sculptures/manta-process-1.png" alt="Lit paper and reed form" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                <img src="works/sculptures/manta-process-2.png" alt="Reed armature laid out on the floor" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+                <img src="works/sculptures/manta-process-3.png" alt="Reed and paper interior detail" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.matcha }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: minmax(0, 331fr) minmax(0, 430fr) minmax(0, 200fr); align-items: end; column-gap: clamp(10px, 3vw, 40px);">
+                <video ref="{{ muteRef }}" src="works/graphic-design/matchbox.mp4" autoplay="" muted="{{ true }}" loop="" playsInline="{{ true }}" style="display: block; width: 100%; aspect-ratio: 331 / 460; object-fit: cover; margin-bottom: 1.7%;"></video>
+                <img src="works/graphic-design/matchbox-logos.png" alt="Matchbox Matcha logo sticker sheet" style="display: block; width: 100%; height: auto;">
+                <img src="works/graphic-design/matchbox-cup.png" alt="Matchbox Matcha iced cup with logo" style="display: block; width: 100%; height: auto; margin-bottom: 1.7%;">
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.unfilled }}" hint-placeholder-val="{{ true }}">
+              <div style="width: 100%; aspect-ratio: 4 / 3;">
+                <image-slot id="{{ p.slotId }}" shape="rect" fit="contain" placeholder="Drop image for {{ p.title }}"></image-slot>
+              </div>
+            </sc-if>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: {{ p.descGap }}; font-family: 'IBM Plex Mono', monospace; color: #14130f; text-align: {{ p.descAlign }};">
+              <sc-if value="{{ p.size }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">{{ p.size }}</span>
+              </sc-if>
+              <p style="margin: 0; font-size: 13px; line-height: 1.65; text-wrap: pretty;">{{ p.desc }}</p>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+
+    <nav style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: clamp(60px, 8vw, 120px); border-top: 1px solid #14130f;">
+      <a href="{{ prevHref }}" style="display: flex; flex-direction: column; gap: 8px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid #dfd6a8;" style-hover="color: #b866b8;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">&#8592; Previous</span>
+        <span style="font-size: clamp(22px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;">{{ prevName }}</span>
+      </a>
+      <a href="{{ nextHref }}" style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid #dfd6a8; text-align: right;" style-hover="color: #6f87d4;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Next &#8594;</span>
+        <span style="font-size: clamp(22px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;">{{ nextName }}</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer style="position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 16px clamp(18px, 4vw, 54px) 24px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn &#8599;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const U = "uploads/gallery_images-";
+const CATS = [
+  { key: "textiles", name: "Textiles", items: [
+    { title: "Paper Past Times", desc: "The textile piece is a combination of film pictures I took during my travels. I combined three images and overlaid and edited them in Adobe Photoshop. Then, I printed the image, and wove it with an abstract acrylic painting I painted previously. It is meant to spark thoughts on memory and how experiences blend together to become nostalgia.", size: "5 x 6 ft Paper" },
+    { title: "Loose Ends", desc: "I explored freeform crochet through this piece, using only secondhand yarn to craft the portrait of a “pieced-together” woman. I worked from the eyes outwards, and left the back of the piece unwoven on purpose. The messy back aims to represent how one can appear to be put together, but in actuality, unraveling.", size: "3 x 4 ft Yarn" },
+  ]},
+  { key: "ui-ux", name: "UI/UX", items: [
+    { title: "Flavored Salt Juicer", files: { 1: "works/ui-ux/juicer-slide-1.png", 2: "works/ui-ux/juicer-slide-2b.png", 3: "works/ui-ux/juicer-slide-3.png", 4: "works/ui-ux/juicer-slide-4.webp", 5: "works/ui-ux/juicer-slide-5.webp", 6: "works/ui-ux/juicer-slide-6.webp" }, desc: "The \"Salt & Squeeze\", sustainable juicer aims to eliminate juicing scraps through a dehydration process. After the scraps are dry, the machine grinds the pieces with sea salt in a spice grinder mechanism. The salt and juice can then be used by chefs, and mixologists alike.", size: "" },
+    { title: "Shelter Device", files: { 2: "works/ui-ux/shelter-slide-2.png", 3: "works/ui-ux/shelter-slide-3.png", 4: "works/ui-ux/shelter-slide-4b.png", 5: "works/ui-ux/shelter-slide-5.png", 6: "works/ui-ux/shelter-slide-6.png" }, desc: "The multifunctional product can be distributed to unhoused individuals or travelers to provide comfortable and practical shelter on the go. The device works 8 different ways through folding methods, and can attach to any wall, tree, or pole. Additionally, the materials the product is composed of are all cost-effective, and long-lasting.", size: "" },
+    { title: "Self-Sorting Trash Can", slot: "project-03", desc: "After working at a UCLA restaurant and taking out the trash, I realized many people do not sort their trash correctly. This design sorts trash based on size, rather than material, making it easier for the user. One would simply throw the trash in the compartment it fits best in, and the device would sort it using weight and pH in order to categorize it correctly.", size: "" },
+    { title: "NOTCH", slot: "project-04", files: {"1":"works/ui-ux/notch-slide-1.png","2":"works/ui-ux/notch-slide-2.png","3":"works/ui-ux/notch-slide-3.png","4":"works/ui-ux/notch-slide-4.png","5":"works/ui-ux/notch-slide-5.png","6":"works/ui-ux/notch-slide-6.png","7":"works/ui-ux/notch-slide-7.png","8":"works/ui-ux/notch-slide-8.png","9":"works/ui-ux/notch-slide-9.png"}, desc: "Many college students shotgun drinks. I created a tool to make shotgunning safer, more efficient, and accessible to everyone. The prototypes were 3D-printed, but ideally in the future they will be produced in steel.", size: "" },
+  ]},
+  { key: "sculptures", name: "Sculptures", items: [
+    { title: "Manta Ray", desc: "After going on a night dive in Hawaii and having manta rays float mere inches away from me, I was inspired to replicate the same phenomenon - only on land. The base of the ray is galvanized steel wire and wrapped soaked reed. Afterwards, an LED light system was placed inside before enclosing the creature. Potato starch and natural fibrous paper were used, layering paper and “glue” to create a sheer shell.", size: "7.5 x 8 ft Reed, potato starch, paper and wire" },
+    { title: "Boule Bowl", desc: "Making bread is difficult. I created this boule using wood in order to measure the “rising process” of fermentation in bread making. I laser cut the pieces and carved the lid. The fabric pieces fall as the bread rises.", size: "12 x 9 in Wood", anim: true },
+    { title: "Bloom", desc: "I was inspired by flowers that I see when I go on walks. I wanted the sculpture to feel surreal and whimsical, which is why I chose a larger scale. The lamp reflects a pattern onto the floor, made possible by the carved interior cardboard panel.", size: "3 x 2 ft Reed, potato starch, paper and wire" },
+    { title: "Building Blocks - Child Light", desc: "Many parents choose to display their children's art on the fridge or on the wall. The blocks combine interior design and play. One can create whatever sculpture, and then place it on the 3-D printed base, and it becomes a light fixture.", size: "9 x 3 x 2 in 3-D Printed and Cardstock" },
+    { title: "Indonesia", desc: "Inspired by the geometric design of waterhouses, especially in Indonesia, I designed a house of my own. After I sketched out the floorplan, I used recycled boxes and hot glue to make my drawing come to life.", size: "20 x 30 in Cardboard and glue" },
+  ]},
+  { key: "fine-art", name: "Fine Art", items: [
+    { title: "MuralCare", desc: "I founded the organization. I teach new officers my original paint-by-number mural approach and lead all 47 volunteers at our painting events. MuralCare completed one 52 by 6 foot mural, and is planning another mural that will begin in January. I received over 26 gallons of reused paint from sustainability-oriented companies. A few commercial stores, including Home Depot and Ace Hardware, donated over $300 worth of supplies.", size: "" },
+    { title: "Venus", desc: "I was inspired by tropical greenery and unique plants like the venus flytrap. The abstract strokes of color in curved motions make the motion continuous. It aims to explore dimension and contrast.", size: "16 x 20 in Acrylic on cardboard and canvas" },
+    { title: "Aurelio", desc: "The piece is a portrayal of my 90-year-old grandfather who died earlier this year. I focused on capturing the wrinkles, and scars on the surface of both his face, and hands - reminders of his hardships in the Vietnam War, and his time in the Philippines.", size: "18 x 20 in Charcoal" },
+    { title: "Gears", desc: "I observed the intricacy of bike gears before using a mixture of graphite sticks and pencils to draw them in detail. I practiced smooth shading in contrast with hard lines, whilst trying to capture how light reflects off the metal of the machinery.", size: "16 x 20 in Pencil" },
+    { title: "Sketchbook", desc: "A catalog of the sketches I drew while traveling through Southeast Asia.", size: "7 x 4 in Pen and Colored pencil", book: true },
+  ]},
+  { key: "graphic-design", name: "Graphic Design", items: [
+    { title: "Matchbook Matcha", desc: "At UCLA, I started a pop-up matcha business. I designed the brand and logo system.", size: "" },
+    { title: "Monkey Comic", desc: "A fun comic depicting monkeys hiking up the famous Mt. Tam in San Francisco for pancakes.", size: "", imgs: ["works/graphic-design/monkey-comic.png"], maxW: "760px" },
+    { title: "Website Security", desc: "A creative CAPTCHA idea, where you must color in the image in order for the website to allow the user in.", size: "", imgs: ["works/graphic-design/security-1.png", "works/graphic-design/security-2.png", "works/graphic-design/security-3.png"] },
+    { title: "Abstract Ideation", desc: "I was exploring color, form, and shape on Adobe Illustrator.", size: "", imgs: ["works/graphic-design/abstract-1.png", "works/graphic-design/abstract-2.png", "works/graphic-design/abstract-3.png"] },
+    { title: "UCLA Map", desc: "A colorful map to direct new students around campus and help them find water and food sources.", size: "", imgs: ["works/graphic-design/ucla-map.png"] },
+  ]},
+];
+const CUT = {
+  "work-fine-art-venus": "works/cut/work-fine-art-venus.webp",
+  "work-fine-art-sketchbook": "works/cut/work-fine-art-sketchbook.png",
+  "work-fine-art-muralcare": "works/cut/work-fine-art-muralcare.png",
+  "work-sculptures-bloom": "works/cut/work-sculptures-bloom.webp",
+  "work-sculptures-building-blocks-child-light": "works/sculptures/child-light.png",
+};
+const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const SHIFTS = [-0.05, 0.05, -0.04, 0.06, -0.055, 0.045];
+
+const SLIDES = 5;
+class Component extends DCLogic {
+  decks = {};
+  deckVals(slotId, files) {
+    files = files || {};
+    const N = Math.max(SLIDES, ...Object.keys(files).map(Number));
+    const d = this.decks[slotId] || (this.decks[slotId] = { ref: React.createRef() });
+    const idx = (this.state.deckIdx || {})[slotId] || 0;
+    const go = (k) => { const el = d.ref.current; if (el) el.scrollTo({ left: Math.max(0, Math.min(N - 1, k)) * el.clientWidth }); };
+    return {
+      deck: true, deckRef: d.ref,
+      slides: Array.from({ length: N }, (_, i) => ({ n: i + 1, id: i === 0 && !files[1] ? slotId : slotId + "-slide-" + (i + 1) + (files[i + 1] ? "-file" : ""), src: files[i + 1] || "" })),
+      counter: String(idx + 1).padStart(2, "0") + " / " + String(N).padStart(2, "0"),
+      onScroll: (e) => { const el = e.currentTarget, k = Math.round(el.scrollLeft / el.clientWidth); if (k !== idx) this.setState((s) => ({ deckIdx: { ...(s.deckIdx || {}), [slotId]: k } })); },
+      prev: () => go(idx - 1), next: () => go(idx + 1),
+      full: () => { const el = d.ref.current && d.ref.current.parentElement; if (!el) return; document.fullscreenElement ? document.exitFullscreen() : el.requestFullscreen && el.requestFullscreen(); },
+    };
+  }
+  state = { x: -9999, y: -9999, key: "textiles", slots: {}, eye: -1 };
+  componentDidMount() {
+    const HOLD = [1400, 650, 650, 650, 1800];
+    const step = () => { this.bowlT = setTimeout(() => { this.setState((s) => ({ bowl: ((s.bowl || 0) + 1) % 5 })); step(); }, HOLD[this.state.bowl || 0]); };
+    step();
+    fetch(".image-slots.state.json", { cache: "no-store" }).then((r) => r.ok ? r.json() : {}).then((slots) => this.setState({ slots: slots || {} })).catch(() => {});
+    const k = new URLSearchParams(location.search).get("c");
+    if (k && CATS.some((c) => c.key === k)) this.setState({ key: k });
+    this.onMove = (e) => this.setState({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", this.onMove, { passive: true });
+    const id = decodeURIComponent((location.hash || "").slice(1));
+    if (id) setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24 });
+    }, 300);
+  }
+  bookVals() {
+    const N = 8, bk = this.state.bk || 0, t = this.state.turn;
+    const L = (k) => ({ i: "url(works/sketchbook/spread-" + k + ".png)", s: "200% 100%", p: "0% 0%" });
+    const R = (k) => ({ i: "url(works/sketchbook/spread-" + k + ".png)", s: "200% 100%", p: "100% 0%" });
+    const COVER = { i: "url(works/sketchbook/cover.png)", s: "contain", p: "50% 50%" };
+    const NONE = { i: "none", s: "auto", p: "0 0" };
+    let l, r, f = NONE, b = NONE;
+    if (!t) { l = bk > 0 ? L(bk) : NONE; r = bk === 0 ? COVER : R(bk); }
+    else if (t.dir > 0) { const i = t.from; l = i > 0 ? L(i) : NONE; r = R(i + 1); f = i === 0 ? COVER : R(i); b = L(i + 1); }
+    else { const i = t.from; l = i - 1 > 0 ? L(i - 1) : NONE; r = R(i); f = i - 1 === 0 ? COVER : R(i - 1); b = L(i); }
+    const target = t ? t.from + t.dir : bk;
+    const turn = (dir) => {
+      if (this.state.turn) return;
+      const from = this.state.bk || 0;
+      if ((dir > 0 && from >= N) || (dir < 0 && from <= 0)) return;
+      this.setState({ turn: { dir, from, rot: dir > 0 ? 0 : -180 } });
+      requestAnimationFrame(() => requestAnimationFrame(() => this.setState((s) => ({ turn: s.turn && { ...s.turn, rot: dir > 0 ? -180 : 0 } }))));
+      this.bookT = setTimeout(() => this.setState({ bk: from + dir, turn: null }), 950);
+    };
+    return {
+      l, r, f, b, turning: !!t, rot: t ? t.rot : 0,
+      shift: target === 0 ? "-25%" : "0%",
+      counter: target === 0 ? "Cover" : String(target).padStart(2, "0") + " / " + String(N).padStart(2, "0"),
+      prev: () => turn(-1), next: () => turn(1),
+    };
+  }
+  componentWillUnmount() { clearTimeout(this.bookT); clearTimeout(this.bowlT); window.removeEventListener("mousemove", this.onMove); }
+  renderVals() {
+    const s = this.state;
+    const bk = this.bookVals();
+    const i = Math.max(0, CATS.findIndex((c) => c.key === s.key));
+    const c = CATS[i];
+    const prev = CATS[(i - 1 + CATS.length) % CATS.length];
+    const next = CATS[(i + 1) % CATS.length];
+    const eyeArr = [1, 2, 3, 4].map((n, k) => {
+        const on = s.eye === k, any = s.eye >= 0;
+        const rot = [-6, 4, -3, 5][k];
+        return {
+          n, src: "works/eyes/eye-" + n + "-clean.png",
+          w: ["clamp(110px, 18%, 230px)", "clamp(100px, 16%, 210px)", "clamp(100px, 16%, 210px)", "clamp(90px, 14%, 190px)"][k],
+          t: on ? `translateY(-14px) scale(1.18) rotate(${-rot}deg)` : `rotate(${rot * 0.4}deg)`,
+          o: any && !on ? 0.45 : 1,
+          f: on ? "drop-shadow(0 18px 18px rgba(20,19,15,0.25))" : "none",
+          enter: () => this.setState({ eye: k }),
+          leave: () => this.setState({ eye: -1 }),
+        };
+      });
+    return {
+      bo1: (s.bowl || 0) === 0 ? 1 : 0, bo2: s.bowl === 1 ? 1 : 0, bo3: s.bowl === 2 ? 1 : 0, bo4: s.bowl === 3 ? 1 : 0, bo5: s.bowl === 4 ? 1 : 0,
+      muteRef: this.muteRef || (this.muteRef = (el) => { if (el) { el.muted = true; el.defaultMuted = true; el.volume = 0; el.play && el.play().catch(() => {}); } }),
+      bk,
+      sphereTransform: `translate3d(${s.x}px, ${s.y}px, 0) translate(-50%, -50%)`,
+      num: String(i + 1).padStart(2, "0"),
+      name: c.name,
+      countLabel: `${c.items.length} ${c.items.length === 1 ? "piece" : "pieces"}`,
+      letters: c.name.toLowerCase().split("").map((ch, n) => ({ ch, shift: `translateY(${SHIFTS[n % SHIFTS.length]}em)` })),
+      gridCols: c.key === "graphic-design" ? "repeat(auto-fit, minmax(min(100%, 420px), 1fr))" : "repeat(2, minmax(0, 1fr))",
+      items: c.items.map((p, n) => {
+        const slotId = "work-" + c.key + "-" + (p.slot || slug(p.title));
+        const src = CUT[slotId] || (s.slots[slotId] && s.slots[slotId].u) || null;
+        return {
+          ...p, slug: slug(p.title), slotId, embed: p.title === "Loose Ends", descGap: "0", num: String(n + 1).padStart(2, "0"),
+          artMaxW: p.title === "Gaza Genocide Article" ? "620px" : "none", descAlign: p.title === "Gaza Genocide Article" ? "center" : "left",
+          span: (p.title === "Matchbook Matcha" || p.title === "Gaza Genocide Article" || p.imgs) ? "1 / -1" : c.key === "graphic-design" ? "auto" : (c.key === "fine-art" && (p.title === "Aurelio" || p.title === "Gears")) ? "span 1" : "1 / -1",
+          ...(c.key === "ui-ux" ? this.deckVals(slotId, p.files) : {}),
+          anim: !!p.anim, book: !!p.book, ppt: p.title === "Paper Past Times",
+          frames: p.anim ? [1, 2, 3, 4, 5].map((n) => ({ src: "works/sourdo/frame-" + n + ".png", alt: p.title + " opening, frame " + n, o: (this.state.bowl || 0) === n - 1 ? 1 : 0 })) : [],
+          matcha: p.title === "Matchbook Matcha", manta: p.title === "Manta Ray",
+          hasImgs: !!p.imgs, imgList: (p.imgs || []).map((u, k) => ({ el: React.createElement("img", { src: u, alt: p.title + " " + (k + 1), style: { display: "block", width: "100%", height: "auto" } }) })),
+          imgCols: p.imgs && p.imgs.length > 1 ? "repeat(" + p.imgs.length + ", minmax(0, 1fr))" : "minmax(0, 1fr)", imgMaxW: p.maxW || "100%",
+          filled: c.key !== "ui-ux" && !p.anim && !p.book && !p.imgs && p.title !== "Matchbook Matcha" && p.title !== "Manta Ray" && !!src, unfilled: c.key !== "ui-ux" && !p.anim && !p.book && !p.imgs && p.title !== "Matchbook Matcha" && p.title !== "Manta Ray" && !src,
+          pic: src ? React.createElement("img", { src, alt: p.title, style: { width: "100%", height: "auto", display: "block" } }) : null,
+        };
+      }),
+      eye0: eyeArr[0], eye1: eyeArr[1], eye2: eyeArr[2], eye3: eyeArr[3],
+      empty: c.items.length === 0,
+      layoutPic: React.createElement("img", { src: "works/" + c.key + ".png", alt: c.name + " works", style: { width: "100%", height: "auto", display: "block" } }),
+      prevName: prev.name, prevHref: "Category.dc.html?c=" + prev.key,
+      nextName: next.name, nextHref: "Category.dc.html?c=" + next.key,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes drift { 0% { transform: translate3d(0,0,0) rotate(0deg); } 50% { transform: translate3d(0,-3%,0) rotate(180deg); } 100% { transform: translate3d(0,0,0) rotate(360deg); } }
+  @keyframes drift2 { 0% { transform: translate3d(0,0,0) rotate(0deg) scale(1); } 50% { transform: translate3d(3%,3%,0) rotate(-150deg) scale(1.1); } 100% { transform: translate3d(0,0,0) rotate(-360deg) scale(1); } }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+
+  <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: url('works/venus-trace.png?v=4'); background-size: cover; background-position: center; opacity: 1;"></div>
+  <canvas ref="{{ traceCanvas }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <sc-if value="{{ showGrain }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+  </sc-if>
+
+  
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-family: Archivo, sans-serif; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; background: #f7f1c9; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a7458;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  
+
+  <main id="top" ref="{{ heroRef }}" style="position: relative; z-index: 3; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(22px, 4vh, 48px); padding: clamp(16px, 3vh, 40px) clamp(18px, 4vw, 54px);">
+    <div aria-hidden="true" style="position: absolute; left: clamp(14px, 5vw, 90px); bottom: clamp(10px, 5vh, 60px); z-index: 4; pointer-events: none; display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 2px; color: #1a30d6; transform: rotate(-4deg);">
+      <span style="font-family: Caveat, 'Comic Sans MS', cursive; font-size: clamp(20px, 2.2vw, 30px); font-weight: 700; line-height: 1; white-space: nowrap; -webkit-text-stroke: 6px #f7f1c9; paint-order: stroke fill;">drag cursor over lines</span>
+      <svg viewBox="0 0 200 130" width="clamp(110px, 12vw, 170px)" style="width: clamp(110px, 12vw, 170px); height: auto; overflow: visible; margin-left: clamp(30px, 4vw, 60px);">
+        <defs>
+          <filter id="sketch" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"></feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="4"></feDisplacementMap>
+          </filter>
+        </defs>
+        <g fill="none" stroke="#1a30d6" stroke-linecap="round" stroke-linejoin="round" filter="url(#sketch)">
+          <path d="M 12 122 C 30 60, 90 22, 176 34" stroke-width="3.2"></path>
+          <path d="M 15 118 C 36 58, 94 26, 172 31" stroke-width="1.6" opacity="0.85"></path>
+          <path d="M 152 14 L 178 34 L 150 52" stroke-width="3.2"></path>
+          <path d="M 149 18 L 175 33 L 154 48" stroke-width="1.5" opacity="0.85"></path>
+        </g>
+      </svg>
+    </div>
+    <div style="-webkit-text-stroke: 0.07em #f7f1c9; paint-order: stroke fill; display: flex; flex-wrap: nowrap; align-items: flex-end; justify-content: center; gap: 0.28em; white-space: nowrap; font-size: max(48px, min(13.5vw, 30vh, 280px)); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: flex; align-items: flex-end;"><span style="display: inline-block; transform: translateY(-0.055em);">S</span><span style="display: inline-block; transform: translateY(0.05em);">o</span><span style="display: inline-block; transform: translateY(-0.04em);">f</span><span style="display: inline-block; transform: translateY(0.06em);">i</span><span style="display: inline-block; transform: translateY(-0.05em);">a</span></span>
+      <span style="display: flex; align-items: flex-end;"><span style="display: inline-block; transform: translateY(0.05em);">L</span><span style="display: inline-block; transform: translateY(-0.05em);">l</span><span style="display: inline-block; transform: translateY(0.055em);">a</span><span style="display: inline-block; transform: translateY(-0.04em);">b</span><span style="display: inline-block; transform: translateY(0.06em);">r</span><span style="display: inline-block; transform: translateY(-0.055em);">e</span><span style="display: inline-block; transform: translateY(0.045em);">s</span></span>
+    </div>
+    <nav style="-webkit-text-stroke: 9px #f7f1c9; paint-order: stroke fill; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 28px); font-size: clamp(22px, 3vw, 42px);">
+      <a ref="{{ row1 }}" href="About.dc.html" id="about" onMouseEnter="{{ hover1 }}" onMouseLeave="{{ hoverOut }}" style="font-weight: 700; letter-spacing: -0.045em; text-transform: lowercase; transition: color 220ms ease; color: {{ c1 }};">about</a>
+      <span aria-hidden="true" style="color: #e8402a; font-size: 0.9em; line-height: 1;">&#10022;</span>
+      <a ref="{{ row2 }}" href="Works.dc.html" id="works" onMouseEnter="{{ hover2 }}" onMouseLeave="{{ hoverOut }}" style="font-weight: 700; letter-spacing: -0.045em; text-transform: lowercase; transition: color 220ms ease; color: {{ c2 }};">works</a>
+      <span aria-hidden="true" style="color: #e8402a; font-size: 0.9em; line-height: 1;">&#10022;</span>
+      <a ref="{{ row4 }}" href="Contact.dc.html" id="contact" onMouseEnter="{{ hover4 }}" onMouseLeave="{{ hoverOut }}" style="font-weight: 700; letter-spacing: -0.045em; text-transform: lowercase; transition: color 220ms ease; color: {{ c4 }};">contact</a>
+    </nav>
+  </main>
+
+  
+
+  <footer style="position: relative; z-index: 2; background: #f7f1c9; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 16px clamp(18px, 4vw, 54px) 24px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn ↗</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showNumbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Section list&quot;},&quot;showGrain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Surface&quot;}}">
+const PASTELS = ["#d9607f", "#b866b8", "#6f87d4", "#c98a2a"];
+const PROJECTS = [
+  { title: "Crochet Tapestry", date: "May 2025", img: "uploads/gallery_images-1790202398817-6iu1.png" },
+  { title: "Masks", date: "January 2025", img: "uploads/gallery_images-1790202401547-4vcl.png" },
+  { title: "Aurelio", date: "April 2024", img: "uploads/gallery_images-1790202407259-powd.png" },
+  { title: "Gaza Genocide Article", date: "May 2026", img: "uploads/gallery_images-1790202412238-aaow.png" },
+  { title: "MuralCare Mural", date: "January 2025", img: "uploads/gallery_images-1790202415006-kizh.png" },
+  { title: "Cardboard House Model", date: "October 2024", img: "uploads/gallery_images-1790202417446-yi01.png" },
+  { title: "Shelter Device", date: "April 2025", img: "uploads/gallery_images-1790202420974-toi7.png" },
+  { title: "Trashcan CAD Demo", date: "June 2025", img: "uploads/gallery_images-1790202424717-w3xp.png" },
+  { title: "Juicer Product Demo", date: "August 2025", img: "uploads/gallery_images-1790202427519-jvgf.png" },
+  { title: "Venus Acrylic Painting", date: "November 2024", img: "uploads/gallery_images-1790202444278-n1lh.jpg" },
+  { title: "Bird Crochet Piece", date: "September 2026", img: "uploads/gallery_images-1790202549353-vkwh.png" },
+  { title: "Weaved In", date: "May 2026", img: "uploads/gallery_images-1790202595868-5kdm.png" },
+];
+
+class Component extends DCLogic {
+  state = { x: null, y: null, active: 0, hovered: 0, flipped: -1 };
+
+  constructor(props) {
+    super(props);
+    this.hero = React.createRef();
+    this.rows = [React.createRef(), React.createRef(), React.createRef(), React.createRef()];
+    this.cv = React.createRef();
+    this.trail = [];
+  }
+
+  setupTrace() {
+    const cv = this.cv.current; if (!cv) return;
+    const ctx = cv.getContext("2d");
+    const mask = document.createElement("canvas"), mctx = mask.getContext("2d");
+    const img = new Image(); img.src = "works/venus-trace-orange.png?v=4";
+    const fit = () => {
+      const r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+      const w = Math.round(r.width * dpr), hh = Math.round(r.height * dpr);
+      if (w === cv.width && hh === cv.height) return;
+      const old = mask.width ? mask : null;
+      let keep = null;
+      if (old) { keep = document.createElement("canvas"); keep.width = mask.width; keep.height = mask.height; keep.getContext("2d").drawImage(mask, 0, 0); }
+      cv.width = w; cv.height = hh; mask.width = w; mask.height = hh;
+      if (keep) mctx.drawImage(keep, 0, 0, w, hh);
+      this.dirty = true;
+    };
+    fit();
+    this.onResize = fit; window.addEventListener("resize", fit);
+    const R = 60;
+    const stamp = (x, y) => {
+      const g = mctx.createRadialGradient(x, y, 0, x, y, R);
+      g.addColorStop(0, "rgba(0,0,0,1)"); g.addColorStop(0.6, "rgba(0,0,0,0.9)"); g.addColorStop(1, "rgba(0,0,0,0)");
+      mctx.fillStyle = g; mctx.fillRect(x - R, y - R, R * 2, R * 2);
+    };
+    this.onTrail = (e) => {
+      const r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+      const x = (e.clientX - r.left) * dpr, y = (e.clientY - r.top) * dpr;
+      const p = this.last;
+      if (p) { const dist = Math.hypot(x - p.x, y - p.y), n = Math.ceil(dist / 14); for (let i = 1; i <= n; i++) stamp(p.x + (x - p.x) * i / n, p.y + (y - p.y) * i / n); }
+      else stamp(x, y);
+      this.last = { x, y };
+      this.dirty = true;
+    };
+    window.addEventListener("mousemove", this.onTrail, { passive: true });
+    img.onload = () => { this.dirty = true; };
+    const draw = () => {
+      if (this.dirty && img.complete && img.naturalWidth) {
+        this.dirty = false;
+        const W = cv.width, H = cv.height;
+        ctx.globalCompositeOperation = "source-over";
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(mask, 0, 0);
+        ctx.globalCompositeOperation = "source-in";
+        const s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+        const iw = img.naturalWidth * s, ih = img.naturalHeight * s;
+        ctx.drawImage(img, (W - iw) / 2, (H - ih) / 2, iw, ih);
+      }
+      this.traceRaf = requestAnimationFrame(draw);
+    };
+    this.traceRaf = requestAnimationFrame(draw);
+  }
+
+  componentDidMount() {
+    this.setupTrace();
+    const anchor = () => {
+      const el = this.hero.current;
+      if (!el) return { x: window.innerWidth * 0.8, y: window.innerHeight * 0.4 };
+      const r = el.getBoundingClientRect();
+      return { x: r.right - Math.min(r.width * 0.12, 150), y: r.top + r.height * 0.42 };
+    };
+    this.pos = anchor();
+    this.target = { ...this.pos };
+    this.onMove = (e) => { this.target = { x: e.clientX, y: e.clientY }; };
+    window.addEventListener("mousemove", this.onMove, { passive: true });
+
+    const tick = () => {
+      const t = this.target, p = this.pos;
+      p.x = t.x;
+      p.y = t.y;
+      let active = 0;
+      this.rows.forEach((ref, i) => {
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        if (p.y > r.top - 10 && p.y < r.bottom + 10 && p.x > r.left - 10 && p.x < r.right + 10) active = i + 1;
+      });
+      if (Math.abs(p.x - (this.state.x ?? -9999)) > 0.4 || Math.abs(p.y - (this.state.y ?? -9999)) > 0.4 || active !== this.state.active) {
+        this.setState({ x: p.x, y: p.y, active });
+      }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("mousemove", this.onMove);
+    cancelAnimationFrame(this.raf);
+    cancelAnimationFrame(this.traceRaf);
+    window.removeEventListener("mousemove", this.onTrail);
+    window.removeEventListener("resize", this.onResize);
+  }
+
+  set(i) { return () => this.setState({ hovered: i }); }
+
+  renderVals() {
+    const { x, y, active, hovered, flipped } = this.state;
+    const color = (i) => (active === i ? PASTELS[i - 1] : "#14130f");
+    return {
+      showNumbers: this.props.showNumbers ?? true,
+      showGrain: this.props.showGrain ?? true,
+      heroRef: this.hero,
+      traceCanvas: this.cv,
+      row1: this.rows[0], row2: this.rows[1], row3: this.rows[2], row4: this.rows[3],
+      sphereTransform: `translate3d(${Math.round(x ?? -9999)}px, ${Math.round(y ?? -9999)}px, 0) translate(-50%, -50%)`,
+      hover1: this.set(1), hover2: this.set(2), hover3: this.set(3), hover4: this.set(4),
+      hoverOut: this.set(0),
+      o1: hovered === 1 || active === 1 ? 1 : 0,
+      o2: hovered === 2 || active === 2 ? 1 : 0,
+      o3: hovered === 3 || active === 3 ? 1 : 0,
+      o4: hovered === 4 || active === 4 ? 1 : 0,
+      c1: color(1), c2: color(2), c3: color(3), c4: color(4),
+      cards: PROJECTS.map((p, i) => ({
+        ...p,
+        pic: React.createElement("img", { src: p.img, alt: p.title, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" } }),
+        href: "Category.dc.html?c=" + ({ "Crochet Tapestry": "textiles", "Bird Crochet Piece": "textiles", "Weaved In": "textiles", "Cardboard House Model": "sculptures", "Shelter Device": "sculptures", "Trashcan CAD Demo": "sculptures", "Juicer Product Demo": "sculptures", "Aurelio": "fine-art", "Venus Acrylic Painting": "fine-art", "MuralCare Mural": "fine-art", "Masks": "graphic-design", "Gaza Genocide Article": "graphic-design" }[p.title] || "textiles") + "#" + p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        col: [0, 7].includes(i) ? "span 2" : [10, 11].includes(i) ? "span 2" : "span 1",
+        row: [0, 7].includes(i) ? "span 2" : "span 1",
+        titleSize: [0, 7].includes(i) ? "clamp(20px, 3.2vw, 46px)" : [10, 11].includes(i) ? "clamp(16px, 2.2vw, 32px)" : "clamp(12px, 1.35vw, 19px)",
+        flip: flipped === i ? "rotateY(0deg)" : "rotateY(180deg)",
+        enter: () => this.setState({ flipped: i }),
+        leave: () => this.setState({ flipped: -1 }),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

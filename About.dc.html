@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div style="height: 100vh; min-height: 620px; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 5; pointer-events: none; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: rgba(245, 96, 52, 0.55); transform: translateY({{ veilY }}); transition: transform 1.2s cubic-bezier(.65,0,.25,1);">
+      <span style="position: absolute; left: 50%; bottom: 6px; width: 44px; height: 5px; margin-left: -22px; border-radius: 3px; background: #c8341f;"></span>
+    </div>
+  </div>
+
+  <div style="position: relative; z-index: 6; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; padding: clamp(4px, 1vh, 14px) clamp(18px, 4vw, 54px) clamp(8px, 1.6vh, 20px);">
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">01 / About me</p>
+    <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: max(52px, min(14vw, 17vh, 220px)); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: inline-block; transform: translateY(-0.05em);">a</span>
+      <span style="display: inline-block; transform: translateY(0.05em);">b</span>
+      <span style="display: inline-block; transform: translateY(-0.04em);">o</span>
+      <span style="display: inline-block; transform: translateY(0.06em);">u</span>
+      <span style="display: inline-block; transform: translateY(-0.055em);">t</span>
+    </h1>
+
+    <section style="flex: 1; min-height: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: clamp(24px, 4vw, 70px); padding: clamp(14px, 2.6vh, 36px) 0; border-bottom: 1px solid #14130f;">
+      <div style="height: 100%; aspect-ratio: 4 / 5; max-width: 40vw; border-radius: 28px; overflow: hidden;">
+        <img src="works/about/portrait.webp" alt="Portrait of Sofia Llabres" fetchpriority="high" loading="eager" decoding="sync" draggable="false" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div style="min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: clamp(14px, 2.4vh, 32px);">
+        <div style="display: flex; flex-direction: column; gap: clamp(10px, 2vh, 22px);">
+          <p style="margin: 0; font-size: max(18px, min(2.6vw, 4vh, 38px)); font-weight: 400; line-height: 1.12; letter-spacing: -0.025em; text-transform: uppercase; text-wrap: pretty;">Hi, I&rsquo;m Sofia</p>
+          <p style="margin: 0; max-width: 52ch; font-size: max(13px, min(1.15vw, 1.9vh, 17px)); line-height: 1.55; color: #4b4530; text-wrap: pretty;">I move between the hand and the screen: crochet, weaving and paint on one side, CAD, product models and editorial layout on the other. Most of my work starts with a material and ends with a question about who it&rsquo;s for. I have special interests in material sustainability, prosthetics, and drug policy.</p>
+          <a href="Resume.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border: 1px solid #14130f; border-radius: 999px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #14130f; transition: background 0.2s, color 0.2s;" style-hover="background: #e8402a; color: #f7f1c9; border-color: #e8402a;">Resume <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">Practice</span>
+            <span style="font-size: max(12px, min(15px, 1.8vh)); line-height: 1.45;">Textile &amp; fiber<br />Painting<br />Product &amp; CAD<br />Editorial design<br />Murals</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">Based</span>
+            <span style="font-size: max(12px, min(15px, 1.8vh)); line-height: 1.45;">UCLA, Design Media Arts<br />LA &amp; Bay Area<br />Open to commissions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));">
+      <a href="Works.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: clamp(8px, 1.6vh, 20px) 0; border-bottom: 1px solid #dfd6a8; font-size: max(18px, min(2.4vw, 3.6vh, 32px)); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;" style-hover="color: #b866b8;"><span>See the works</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px;">&#8599;</span></a>
+      <a href="Contact.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: clamp(8px, 1.6vh, 20px) 0 clamp(8px, 1.6vh, 20px) clamp(0px, 3vw, 40px); border-bottom: 1px solid #dfd6a8; font-size: max(18px, min(2.4vw, 3.6vh, 32px)); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;" style-hover="color: #c98a2a;"><span>Say hello</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px;">&#8599;</span></a>
+    </div>
+  </main>
+
+  <footer style="position: relative; z-index: 2; flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 12px clamp(18px, 4vw, 54px) 16px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn &#8599;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { x: -9999, y: -9999, lifted: false };
+  componentDidMount() {
+    this.veilT = setTimeout(() => this.setState({ lifted: true }), 250);
+    this.onMove = (e) => this.setState({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", this.onMove, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener("mousemove", this.onMove); clearTimeout(this.veilT); }
+  renderVals() {
+    return { veilY: this.state.lifted ? "-102%" : "0%", sphereTransform: `translate3d(${this.state.x}px, ${this.state.y}px, 0) translate(-50%, -50%)` };
+  }
+}
+</script>
+</body>
+</html>

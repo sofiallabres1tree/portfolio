@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; padding: clamp(6px, 1.4vw, 18px) clamp(18px, 4vw, 54px) clamp(40px, 6vw, 90px);">
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">02 / Works &mdash; five disciplines</p>
+    <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: clamp(64px, 17vw, 260px); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: inline-block; transform: translateY(-0.05em);">w</span>
+      <span style="display: inline-block; transform: translateY(0.05em);">o</span>
+      <span style="display: inline-block; transform: translateY(-0.04em);">r</span>
+      <span style="display: inline-block; transform: translateY(0.06em);">k</span>
+      <span style="display: inline-block; transform: translateY(-0.055em);">s</span>
+    </h1>
+
+    <div style="margin-top: clamp(30px, 4.5vw, 64px); border-top: 1px solid #14130f;">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <section id="{{ c.key }}" style="padding: clamp(26px, 3.6vw, 48px) 0 clamp(34px, 4.6vw, 64px); border-bottom: 1px solid #dfd6a8;">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px;">
+            <div style="display: flex; align-items: baseline; gap: clamp(12px, 2vw, 24px);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #9c9472;">{{ c.num }}</span>
+              <h2 style="margin: 0; font-size: clamp(28px, 4.6vw, 64px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.045em; line-height: 0.95;">{{ c.name }}</h2>
+            </div>
+            <a href="{{ c.href }}" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; border: 1px solid #14130f; border-radius: 999px; padding: 9px 14px;" style-hover="background: #14130f; color: #f7f1c9;">See more <span>&#8599;</span></a>
+          </div>
+
+          <div style="display: flex; gap: clamp(14px, 2vw, 26px); overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(-1 * clamp(18px, 4vw, 54px)); padding: clamp(24px, 3.4vw, 44px) clamp(18px, 4vw, 54px) 18px; scrollbar-color: #E25600 transparent;">
+            <sc-for list="{{ c.items }}" as="it" hint-placeholder-count="3">
+              <a href="{{ it.href }}" style="flex: 0 0 auto; width: clamp(220px, 26vw, 340px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px;" style-hover="color: #E25600;">
+                <span style="display: block; aspect-ratio: 4 / 5; background: #E25600; border: 1px solid #14130f; overflow: hidden;">{{ it.pic }}</span>
+                <span style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px;">
+                  <span style="font-size: clamp(14px, 1.3vw, 18px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.02em;">{{ it.title }}</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8262; white-space: nowrap;">{{ it.date }}</span>
+                </span>
+              </a>
+            </sc-for>
+            <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ c.href }}" style="flex: 0 0 auto; width: clamp(220px, 26vw, 340px); aspect-ratio: 4 / 5; background: #E25600; border: 1px solid #14130f; color: #f7f1c9; display: flex; flex-direction: column; justify-content: space-between; padding: 22px;">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #bfe6f2;">View layout</span>
+                <span style="font-size: clamp(22px, 2.6vw, 34px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1;">See the full project sheet</span>
+              </a>
+            </sc-if>
+          </div>
+        </section>
+      </sc-for>
+    </div>
+  </main>
+
+  <div style="position: fixed; left: 0; top: 0; z-index: 5; pointer-events: none; width: clamp(100px, 19vw, 190px); aspect-ratio: 1; border-radius: 50%; box-shadow: 0 40px 90px -36px rgba(150,110,60,0.5); background: radial-gradient(120% 120% at 70% 14%, #ffd76a 0%, #ffb18a 22%, #ff9ab0 44%, #f0a6d8 62%, #b9c6f2 82%, #a8dcea 100%); opacity: 0.6; transform: {{ sphereTransform }};"></div>
+
+  <footer style="position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 16px clamp(18px, 4vw, 54px) 24px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn &#8599;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const U = "uploads/gallery_images-";
+const CATS = [
+  { key: "textiles", name: "Textiles", items: [
+    { title: "Crochet Tapestry", date: "May 2025", img: U + "1790202398817-6iu1.png" },
+    { title: "Bird Crochet Piece", date: "September 2026", img: U + "1790202549353-vkwh.png" },
+    { title: "Weaved In", date: "May 2026", img: U + "1790202595868-5kdm.png" },
+  ]},
+  { key: "ui-ux", name: "UI/UX", items: [] },
+  { key: "sculptures", name: "Sculptures", items: [
+    { title: "Cardboard House Model", date: "October 2024", img: U + "1790202417446-yi01.png" },
+    { title: "Shelter Device", date: "April 2025", img: U + "1790202420974-toi7.png" },
+    { title: "Trashcan CAD Demo", date: "June 2025", img: U + "1790202424717-w3xp.png" },
+    { title: "Juicer Product Demo", date: "August 2025", img: U + "1790202427519-jvgf.png" },
+  ]},
+  { key: "fine-art", name: "Fine Art", items: [
+    { title: "Aurelio", date: "April 2024", img: U + "1790202407259-powd.png" },
+    { title: "Venus Acrylic Painting", date: "November 2024", img: U + "1790202444278-n1lh.jpg" },
+    { title: "MuralCare Mural", date: "January 2025", img: U + "1790202415006-kizh.png" },
+  ]},
+  { key: "graphic-design", name: "Graphic Design", items: [
+    { title: "Masks", date: "January 2025", img: U + "1790202401547-4vcl.png" },
+    { title: "Gaza Genocide Article", date: "May 2026", img: U + "1790202412238-aaow.png" },
+  ]},
+];
+const IMG = { width: "100%", height: "100%", objectFit: "cover", display: "block" };
+
+class Component extends DCLogic {
+  state = { x: -9999, y: -9999 };
+  componentDidMount() {
+    this.onMove = (e) => this.setState({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", this.onMove, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener("mousemove", this.onMove); }
+  renderVals() {
+    const s = this.state;
+    return {
+      sphereTransform: `translate3d(${s.x}px, ${s.y}px, 0) translate(-50%, -50%)`,
+      cats: CATS.map((c, n) => ({
+        key: c.key,
+        name: c.name,
+        num: String(n + 1).padStart(2, "0"),
+        href: "Category.dc.html?c=" + c.key,
+        empty: c.items.length === 0,
+        items: c.items.map((p) => ({
+          ...p,
+          href: "Category.dc.html?c=" + c.key,
+          pic: React.createElement("img", { src: p.img, alt: p.title, style: IMG }),
+        })),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

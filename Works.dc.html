@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div style="height: 100vh; min-height: 380px; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; padding: clamp(4px, 1vh, 14px) clamp(18px, 4vw, 54px) clamp(10px, 2vh, 24px);">
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">02 / Works &mdash; five disciplines</p>
+    <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: max(52px, min(14vw, 17vh, 220px)); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: inline-block; transform: translateY(-0.05em);">w</span>
+      <span style="display: inline-block; transform: translateY(0.05em);">o</span>
+      <span style="display: inline-block; transform: translateY(-0.04em);">r</span>
+      <span style="display: inline-block; transform: translateY(0.06em);">k</span>
+      <span style="display: inline-block; transform: translateY(-0.055em);">s</span>
+    </h1>
+
+    <div style="flex: 1; min-height: 0; margin-top: clamp(12px, 2.4vh, 36px); border-top: 1px solid #14130f; padding-top: clamp(8px, 1.6vh, 24px); display: flex; justify-content: center; container-type: size;">
+      <div style="position: relative; width: min(100cqw, calc(100cqh - clamp(8px, 1.6vh, 24px)), 760px); aspect-ratio: 1;">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="0">
+          <a href="{{ c.href }}" aria-label="{{ c.name }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position: absolute; left: {{ c.x }}%; top: {{ c.y }}%; width: 27%; aspect-ratio: 1; transform: translate(-50%, -50%); z-index: {{ c.z }}; opacity: {{ c.groupO }};">
+            <span style="position: absolute; inset: 0; border-radius: 50%; background: {{ c.color }}; opacity: {{ c.o }}; transform: scale({{ c.s }}); pointer-events: none;"></span>
+            <span style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid {{ c.edge }}; opacity: {{ c.edgeO }}; transform: scale({{ c.s }}); pointer-events: none;"></span>
+            <sc-for list="{{ c.lines }}" as="l" hint-placeholder-count="0">
+              <span style="position: absolute; inset: 0; transform: rotate({{ l.a }}deg); pointer-events: none;">
+                <span style="position: absolute; left: {{ l.r }}%; top: 50%; width: {{ l.len }}%; height: 3px; margin-top: -1.5px; background: #e8402a; opacity: {{ l.o }};"></span>
+              </span>
+            </sc-for>
+            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: {{ c.labelO }}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #14130f;">{{ c.num }}</span>
+            <span style="position: absolute; inset: 0; pointer-events: none; opacity: {{ c.labelO }};">{{ c.arc }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </main>
+
+  <footer style="position: relative; z-index: 2; flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 12px clamp(18px, 4vw, 54px) 16px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn &#8599;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const U = "uploads/gallery_images-";
+const CATS = [
+  { key: "textiles", name: "Textiles", items: [
+    { title: "Crochet Tapestry", date: "May 2025", img: U + "1790202398817-6iu1.png" },
+    { title: "Bird Crochet Piece", date: "September 2026", img: U + "1790202549353-vkwh.png" },
+    { title: "Weaved In", date: "May 2026", img: U + "1790202595868-5kdm.png" },
+  ]},
+  { key: "ui-ux", name: "UI/UX", items: [] },
+  { key: "sculptures", name: "Sculptures", items: [
+    { title: "Cardboard House Model", date: "October 2024", img: U + "1790202417446-yi01.png" },
+    { title: "Shelter Device", date: "April 2025", img: U + "1790202420974-toi7.png" },
+    { title: "Trashcan CAD Demo", date: "June 2025", img: U + "1790202424717-w3xp.png" },
+    { title: "Juicer Product Demo", date: "August 2025", img: U + "1790202427519-jvgf.png" },
+  ]},
+  { key: "fine-art", name: "Fine Art", items: [
+    { title: "Aurelio", date: "April 2024", img: U + "1790202407259-powd.png" },
+    { title: "Venus Acrylic Painting", date: "November 2024", img: U + "1790202444278-n1lh.jpg" },
+    { title: "MuralCare Mural", date: "January 2025", img: U + "1790202415006-kizh.png" },
+  ]},
+  { key: "graphic-design", name: "Graphic Design", items: [
+    { title: "Masks", date: "January 2025", img: U + "1790202401547-4vcl.png" },
+    { title: "Gaza Genocide Article", date: "May 2026", img: U + "1790202412238-aaow.png" },
+  ]},
+];
+const COLORS = { "textiles": "#f5d546", "ui-ux": "#c8378f", "sculptures": "#4f7fd9", "fine-art": "#f6c3d3", "graphic-design": "#7d8a3c" };
+const POS = [[50, 19], [79, 44], [65, 79], [31, 79], [20, 43]];
+const N_LINES = 16;
+const LIGHT = { "textiles": true, "fine-art": true };
+const EDGE = { "textiles": "#c9a200", "ui-ux": "#9c2a6f", "sculptures": "#3560b5", "fine-art": "#d9809e", "graphic-design": "#5c6628" };
+const E = React.createElement;
+function arcLabel(key, name) {
+  const id = "arc-" + key;
+  return E("svg", { viewBox: "0 0 200 200", width: "100%", height: "100%", style: { position: "absolute", inset: 0, overflow: "visible" } },
+    E("defs", null, E("path", { id, d: "M -30 100 A 130 130 0 0 0 230 100", fill: "none" })),
+    E("text", { style: { fontFamily: "Archivo, sans-serif", fontSize: "25px", fontWeight: 700, fontStretch: "112%", letterSpacing: "0.02em", fill: "#e8402a" } },
+      E("textPath", { href: "#" + id, startOffset: "50%", textAnchor: "middle" }, name.toUpperCase())));
+}
+const clamp = (v) => Math.max(0, Math.min(1, v));
+const easeOutBack = (t) => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+
+class Component extends DCLogic {
+  state = { active: -1, p: 0 };
+  componentDidMount() {
+    this.target = -1;
+    let last = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(64, now - last); last = now;
+      let { active, p } = this.state;
+      if (active >= 0 && p >= 0.5) this.target = active;
+      if (this.target >= 0 && (active === this.target || p === 0)) {
+        active = this.target;
+        p = Math.min(1, p + dt / 1800);
+      } else if (p > 0) {
+        p = Math.max(0, p - dt / 500);
+      } else active = -1;
+      if (p !== this.state.p || active !== this.state.active) this.setState({ active, p });
+      if (p >= 1 && !this.gone) { this.gone = true; window.location.href = "Category.dc.html?c=" + CATS[active].key; return; }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+  renderVals() {
+    const { active, p } = this.state;
+    return {
+      cats: CATS.map((c, n) => {
+        const on = n === active, q = on ? p : 0;
+        const burst = clamp(q / 0.3), grow = clamp((q - 0.3) / 0.7);
+        const s = 1 + 0.35 * easeOutBack(burst) + 13 * Math.pow(grow, 2.2);
+        const [x0, y0] = POS[n], e = grow * grow;
+        const lo = q === 0 ? 0 : 0.5 * clamp(q / 0.08) * (1 - 0.5 * grow);
+        return {
+          name: c.name,
+          num: String(n + 1).padStart(2, "0"),
+          color: COLORS[c.key],
+          href: "Category.dc.html?c=" + c.key,
+          x: x0 + (50 - x0) * e, y: y0 + (50 - y0) * e,
+          z: on ? 20 : 1,
+          s,
+          o: (LIGHT[c.key] ? 0.85 : 0.55) - (LIGHT[c.key] ? 0.45 : 0.4) * grow,
+          edge: EDGE[c.key], edgeO: on ? clamp(q / 0.1) * (1 - 0.6 * grow) : 0,
+          groupO: active >= 0 && !on ? 1 - 0.8 * clamp(p / 0.6) : 1,
+          labelO: 1 - clamp(q / 0.25),
+          lines: on ? Array.from({ length: N_LINES }, (_, i) => ({
+            a: i * (360 / N_LINES) - 90,
+            r: 50 + 50 * s * 1.1 + 6 * burst,
+            len: (i % 2 ? 22 : 34) * (0.3 + 0.7 * burst) * s,
+            o: lo,
+          })) : [],
+          arc: arcLabel(c.key, c.name),
+          enter: () => { if (this.state.active < 0 || this.state.active === n || this.state.p === 0) this.target = n; },
+          leave: () => { if (this.target === n && this.state.p < 0.5) this.target = -1; },
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #e8402a; }
+</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position: relative; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+
+  <div aria-hidden="true" style="position: sticky; top: 0; height: 100vh; margin-bottom: -100vh; z-index: 1; overflow: hidden; pointer-events: none;">
+    <sc-if value="{{ showGrain }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; inset: 0; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+    </sc-if>
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 clamp(6px, 1vw, 16px) clamp(4px, 0.8vh, 10px);">
+      <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(-0.03em);">S</span><span style="display: inline-block; transform: translateY(0.03em);">o</span><span style="display: inline-block; transform: translateY(-0.02em);">f</span><span style="display: inline-block; transform: translateY(0.035em);">i</span><span style="display: inline-block; transform: translateY(-0.03em);">a</span></div>
+      <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(0.03em);">L</span><span style="display: inline-block; transform: translateY(-0.03em);">l</span><span style="display: inline-block; transform: translateY(0.035em);">a</span><span style="display: inline-block; transform: translateY(-0.02em);">b</span><span style="display: inline-block; transform: translateY(0.035em);">r</span><span style="display: inline-block; transform: translateY(-0.03em);">e</span><span style="display: inline-block; transform: translateY(0.025em);">s</span></div>
+    </div>
+  </div>
+
+  <div style="position: relative; z-index: 2; display: flex; flex-direction: column; padding: 100vh 0 40vh; pointer-events: none;">
+    <a data-reveal="" href="Category.dc.html?c=textiles#paper-past-times" aria-label="Paper Past Times" style="display: block; width: 44%; margin-left: 8%; margin-top: 0vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-textiles-paper-past-times.webp" alt="Paper Past Times" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=fine-art#venus" aria-label="Venus" style="display: block; width: 28%; margin-left: 60%; margin-top: -22vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/cut/work-fine-art-venus.webp" alt="Venus" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=fine-art#aurelio" aria-label="Aurelio" style="display: block; width: 24%; margin-left: 4%; margin-top: 10vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-fine-art-aurelio.webp" alt="Aurelio" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=sculptures#manta-ray" aria-label="Manta Ray" style="display: block; width: 50%; margin-left: 38%; margin-top: -12vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-sculptures-manta-ray.webp" alt="Manta Ray" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=graphic-design#gaza-genocide-article" aria-label="Gaza Genocide Article" style="display: block; width: 24%; margin-left: 70%; margin-top: 6vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-graphic-design-gaza-genocide-article.webp" alt="Gaza Genocide Article" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=textiles#loose-ends" aria-label="Loose Ends" style="display: block; width: 34%; margin-left: 12%; margin-top: -16vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-textiles-loose-ends.webp" alt="Loose Ends" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=ui-ux#flavored-salt-juicer" aria-label="Flavored Salt Juicer" style="display: block; width: 38%; margin-left: 56%; margin-top: 4vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-ui-ux-flavored-salt-juicer.webp" alt="Flavored Salt Juicer" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=fine-art#muralcare" aria-label="MuralCare" style="display: block; width: 52%; margin-left: 2%; margin-top: 10vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/cut/work-fine-art-muralcare.png" alt="MuralCare" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=sculptures#bloom" aria-label="Bloom" style="display: block; width: 28%; margin-left: 64%; margin-top: -24vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/cut/work-sculptures-bloom.webp" alt="Bloom" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=ui-ux#shelter-device" aria-label="Shelter Device" style="display: block; width: 36%; margin-left: 30%; margin-top: 8vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-ui-ux-shelter-device.webp" alt="Shelter Device" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=fine-art#gears" aria-label="Gears" style="display: block; width: 22%; margin-left: 72%; margin-top: -8vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-fine-art-gears.webp" alt="Gears" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=graphic-design#matchbook-matcha" aria-label="Matchbook Matcha" style="display: block; width: 30%; margin-left: 6%; margin-top: 4vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-graphic-design-matchbook-matcha.webp" alt="Matchbook Matcha" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=sculptures#indonesia" aria-label="Indonesia" style="display: block; width: 36%; margin-left: 46%; margin-top: -18vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/home/work-sculptures-indonesia.webp" alt="Indonesia" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+    <a data-reveal="" href="Category.dc.html?c=fine-art#sketchbook" aria-label="Sketchbook" style="display: block; width: 46%; margin-left: 18%; margin-top: 10vh; pointer-events: auto; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);">
+      <img src="works/cut/work-fine-art-sketchbook.png" alt="Sketchbook" draggable="false" style="display: block; width: 100%; height: auto; transition: opacity 0.35s ease;" style-hover="opacity: 0.28;">
+    </a>
+  </div>
+
+  <div style="position: fixed; inset: 0; z-index: 3; pointer-events: none; font-family: 'IBM Plex Mono', monospace; font-size: clamp(10px, 0.95vw, 13px); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #14130f;">
+    <header style="position: absolute; top: 0; left: 0; right: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: clamp(16px, 2.4vw, 34px) clamp(16px, 2vw, 32px);">
+      <span>Textiles, sculpture, fine art, graphic &amp; UI/UX design</span>
+      <nav style="display: flex; gap: clamp(18px, 3.4vw, 56px); pointer-events: auto;">
+        <a href="About.dc.html">About</a>
+        <a href="Works.dc.html">Works</a>
+        <a href="Contact.dc.html">Contact</a>
+        <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a">LinkedIn</a>
+      </nav>
+    </header>
+    <div style="position: absolute; left: 0; right: 0; bottom: calc(min(13.5vw, 25vh) * 1.72 + 18px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px clamp(24px, 8vw, 120px); padding: 0 clamp(16px, 2vw, 32px);">
+      <span>UCLA student &mdash; open for commissions</span>
+      <a href="mailto:sofiallabres1@g.ucla.edu" style="pointer-events: auto;">sofiallabres1@g.ucla.edu</a>
+      <span style="margin-left: auto;">LA &amp; Bay Area &copy; 2026</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showGrain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Surface&quot;}}">
+class Component extends DCLogic {
+  constructor(props) { super(props); this.root = React.createRef(); }
+  componentDidMount() {
+    const el = this.root.current; if (!el || !("IntersectionObserver" in window)) return;
+    const nodes = [...el.querySelectorAll("[data-reveal]")];
+    this.io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { e.target.style.opacity = "1"; e.target.style.transform = "none"; this.io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -8% 0px" });
+    nodes.forEach((n, i) => {
+      if (n.getBoundingClientRect().top > window.innerHeight) {
+        n.style.opacity = "0";
+        n.style.transform = "translateY(70px) rotate(" + (i % 2 ? 1.5 : -1.5) + "deg)";
+      }
+      this.io.observe(n);
+    });
+  }
+  componentWillUnmount() { this.io && this.io.disconnect(); }
+  renderVals() {
+    return { rootRef: this.root, showGrain: this.props.showGrain ?? true };
+  }
+}
+</script>
+</body>
+</html>

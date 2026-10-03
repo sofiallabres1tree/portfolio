@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #f7f1c9; }
+  * { box-sizing: border-box; }
+  a { color: #14130f; text-decoration: none; }
+  a:hover { color: #14130f; }
+  input, textarea, select { font: inherit; color: inherit; }
+  input::placeholder, textarea::placeholder { color: #a39b78; }
+  @keyframes ticker { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+</style>
+<script src="./cursor.js"></script>
+</helmet>
+<div style="height: 100vh; min-height: 620px; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; pointer-events: none; opacity: 0.22; mix-blend-mode: multiply; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/&gt;&lt;/filter&gt;&lt;rect width='160' height='160' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position: relative; z-index: 4; overflow: hidden; background: #e8402a; border-bottom: 1px solid #14130f;">
+    <div style="display: flex; width: max-content; animation: ticker 28s linear infinite; font-size: clamp(10px, 1.1vw, 13px); font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; color: #f7f1c9; padding: 7px 0;">
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+      <span style="padding: 0 22px;">UCLA Student</span>
+      <span style="padding: 0 22px;">Contact for Commissions</span>
+    </div>
+  </div>
+
+  <header style="position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: clamp(14px, 1.8vw, 22px) clamp(18px, 4vw, 54px);">
+    <a href="Portfolio%20Hero.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="color: #e8402a;">Home</a>
+    <nav style="display: flex; gap: clamp(14px, 2.4vw, 30px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">
+      <a href="About.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">About</a>
+      <a href="Works.dc.html" style="color: #7a7458;" style-hover="color: #e8402a;">Works</a>
+      <a href="Contact.dc.html" style="color: #e8402a;">Contact</a>
+    </nav>
+  </header>
+
+  <main style="position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; padding: clamp(4px, 1vh, 14px) clamp(18px, 4vw, 54px) clamp(10px, 2vh, 24px);">
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">04 / Contact me</p>
+    <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: max(52px, min(14vw, 17vh, 220px)); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
+      <span style="display: inline-block; transform: translateY(-0.05em);">h</span>
+      <span style="display: inline-block; transform: translateY(0.05em);">e</span>
+      <span style="display: inline-block; transform: translateY(-0.04em);">l</span>
+      <span style="display: inline-block; transform: translateY(0.06em);">l</span>
+      <span style="display: inline-block; transform: translateY(-0.055em);">o</span>
+    </h1>
+
+    <section style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); align-items: start; gap: clamp(24px, 4vw, 70px); padding-top: clamp(14px, 3vh, 40px);">
+      <div style="display: flex; flex-direction: column; gap: clamp(14px, 2.6vh, 28px);">
+        
+        <div style="border-top: 1px solid #14130f;">
+          <a href="mailto:sofiallabres1@g.ucla.edu" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: clamp(8px, 1.6vh, 18px) 0; border-bottom: 1px solid #dfd6a8;" style-hover="color: #d9607f;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Email</span>
+            <span style="font-size: max(15px, min(1.7vw, 2.6vh, 24px)); font-weight: 500; letter-spacing: -0.02em; overflow-wrap: anywhere;">sofiallabres1@g.ucla.edu</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px;">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" target="_blank" rel="noopener" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: clamp(8px, 1.6vh, 18px) 0; border-bottom: 1px solid #dfd6a8;" style-hover="color: #6f87d4;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">LinkedIn</span>
+            <span style="font-size: max(15px, min(1.7vw, 2.6vh, 24px)); font-weight: 500; letter-spacing: -0.02em;">/in/sofia-llabres</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px;">↗</span>
+          </a>
+          <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: clamp(8px, 1.6vh, 18px) 0; border-bottom: 1px solid #dfd6a8;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Based</span>
+            <span style="font-size: max(15px, min(1.7vw, 2.6vh, 24px)); font-weight: 500; letter-spacing: -0.02em;">LA &amp; Bay Area</span>
+            <span></span>
+          </div>
+        </div>
+        <div ref="{{ dogRef }}" aria-hidden="true" style="position: relative; width: min(88%, 58vh, 480px); aspect-ratio: 680 / 455; margin-left: 4%; pointer-events: none;">
+          <img src="works/contact/run-1.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 1;">
+          <img src="works/contact/run-2.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-3.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-4.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-5.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-6.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-7.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+          <img src="works/contact/run-8.png" alt="" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;">
+        </div>
+      </div>
+
+      <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: clamp(10px, 1.8vh, 20px); background: #fbf7df; border: 1px solid #14130f; border-radius: 18px; padding: clamp(16px, 2.6vh, 32px) clamp(18px, 2.4vw, 34px);">
+        <label style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Your name</span>
+          <input value="{{ name }}" onChange="{{ onName }}" required="" placeholder="First &amp; last" style="border: none; border-bottom: 1px solid #14130f; background: transparent; padding: 6px 0; font-size: 16px; outline: none;">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Email</span>
+          <input type="email" value="{{ email }}" onChange="{{ onEmail }}" required="" placeholder="you@studio.com" style="border: none; border-bottom: 1px solid #14130f; background: transparent; padding: 6px 0; font-size: 16px; outline: none;">
+        </label>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Looking for</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ topics }}" as="t" hint-placeholder-count="4">
+              <button type="button" onClick="{{ t.pick }}" style="border: 1px solid {{ t.bd }}; border-radius: 999px; padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; background: {{ t.bg }}; color: {{ t.fg }};">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Message</span>
+          <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="3" required="" placeholder="Tell me about the project, timeline, budget…" style="border: 1px solid #cdc498; background: #f7f1c9; padding: 10px; font-size: 15px; line-height: 1.45; resize: none; height: clamp(64px, 12vh, 130px); outline: none;"></textarea>
+        </label>
+        <button type="submit" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; border: none; border-radius: 999px; background: #E25600; color: #f7f1c9; padding: 11px 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer;" style-hover="background: #14130f;">Send message <span style="font-family: 'IBM Plex Mono', monospace;">↗</span></button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #6f87d4;">Opening your mail app — thank you!</p>
+        </sc-if>
+      </form>
+    </section>
+  </main>
+
+  <footer style="position: relative; z-index: 2; flex: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding: 12px clamp(18px, 4vw, 54px) 16px; border-top: 1px solid #14130f; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8262;">
+    <a href="mailto:sofiallabres1@g.ucla.edu" style="color: #8a8262;" style-hover="color: #e8402a;">sofiallabres1@g.ucla.edu</a>
+    <span>LA &amp; Bay Area based</span>
+    <a href="https://www.linkedin.com/in/sofia-llabres-a31a4339a" style="color: #8a8262;" style-hover="color: #e8402a;">LinkedIn ↗</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const TOPICS = ["Commission", "Collaboration", "Internship", "Just saying hi"];
+
+class Component extends DCLogic {
+  state = { name: "", email: "", message: "", topic: "Commission", sent: false };
+  dogRef = React.createRef();
+  componentDidMount() {
+    let last = -1;
+    const tick = (t) => {
+      const el = this.dogRef.current;
+      const f = Math.floor(t / 85) % 8;
+      if (el && f !== last) {
+        const imgs = el.querySelectorAll("img");
+        imgs.forEach((im, i) => { im.style.opacity = i === f ? "1" : "0"; });
+        last = f;
+      }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+  renderVals() {
+    const s = this.state;
+    return {
+      dogRef: this.dogRef,
+      name: s.name, email: s.email, message: s.message, sent: s.sent,
+      onName: (e) => this.setState({ name: e.target.value }),
+      onEmail: (e) => this.setState({ email: e.target.value }),
+      onMessage: (e) => this.setState({ message: e.target.value }),
+      topics: TOPICS.map((t) => ({
+        label: t,
+        bg: s.topic === t ? "#0077ff" : "transparent",
+        bd: s.topic === t ? "#0077ff" : "#14130f",
+        fg: s.topic === t ? "#f7f1c9" : "#14130f",
+        pick: () => this.setState({ topic: t }),
+      })),
+      submit: (e) => {
+        e.preventDefault();
+        const subject = encodeURIComponent(`${s.topic} — from ${s.name}`);
+        const body = encodeURIComponent(`${s.message}\n\n— ${s.name} (${s.email})`);
+        window.location.href = `mailto:sofiallabres1@g.ucla.edu?subject=${subject}&body=${body}`;
+        this.setState({ sent: true });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
