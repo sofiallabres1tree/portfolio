@@ -18,6 +18,7 @@
   a:hover { color: #e8402a; }
 </style>
 <script src="./cursor.js"></script>
+<script src="./eye-grow/eye-grow.js"></script>
 </helmet>
 <div ref="{{ rootRef }}" style="position: relative; background: #f7f1c9; color: #14130f; font-family: Archivo, 'Helvetica Neue', Helvetica, Arial, sans-serif;">
 
@@ -29,6 +30,11 @@
       <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(-0.03em);">S</span><span style="display: inline-block; transform: translateY(0.03em);">o</span><span style="display: inline-block; transform: translateY(-0.02em);">f</span><span style="display: inline-block; transform: translateY(0.035em);">i</span><span style="display: inline-block; transform: translateY(-0.03em);">a</span></div>
       <div style="display: flex; align-items: flex-end; font-size: min(13.5vw, 25vh); font-weight: 500; line-height: 0.74; letter-spacing: -0.05em; color: #E25600; transform: scaleY(2.25); transform-origin: bottom;"><span style="display: inline-block; transform: translateY(0.03em);">L</span><span style="display: inline-block; transform: translateY(-0.03em);">l</span><span style="display: inline-block; transform: translateY(0.035em);">a</span><span style="display: inline-block; transform: translateY(-0.02em);">b</span><span style="display: inline-block; transform: translateY(0.035em);">r</span><span style="display: inline-block; transform: translateY(-0.03em);">e</span><span style="display: inline-block; transform: translateY(0.025em);">s</span></div>
     </div>
+  </div>
+
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 100vh; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(64px, 9vh, 96px) 16px calc(min(13.5vw, 25vh) * 1.72 + 72px); pointer-events: none;">
+    <div id="eye-grow" role="img" aria-label="Crochet eyes that grow into a face on hover" style="height: 100%; max-width: 100%; aspect-ratio: 1303 / 1608; touch-action: pan-y; pointer-events: auto;"></div>
+    <span data-eye-hint="" style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: clamp(10px, 0.95vw, 13px); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #14130f; transition: opacity 0.6s;">hover an eye</span>
   </div>
 
   <div style="position: relative; z-index: 2; display: flex; flex-direction: column; padding: 100vh 0 40vh; pointer-events: none;">
