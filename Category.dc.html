@@ -207,14 +207,14 @@
       </div>
     </div>
 
-    <nav style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: clamp(60px, 8vw, 120px); border-top: 1px solid #14130f;">
+    <nav style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; column-gap: 16px; margin-top: clamp(60px, 8vw, 120px); border-top: 1px solid #14130f;">
       <a href="{{ prevHref }}" style="display: flex; flex-direction: column; gap: 8px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid #dfd6a8;" style-hover="color: #b866b8;">
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">&#8592; Previous</span>
-        <span style="font-size: clamp(22px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;">{{ prevName }}</span>
+        <span style="font-size: clamp(18px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.05; overflow-wrap: anywhere;">{{ prevName }}</span>
       </a>
       <a href="{{ nextHref }}" style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid #dfd6a8; text-align: right;" style-hover="color: #6f87d4;">
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a8262;">Next &#8594;</span>
-        <span style="font-size: clamp(22px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em;">{{ nextName }}</span>
+        <span style="font-size: clamp(18px, 3vw, 40px); font-weight: 500; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.05; overflow-wrap: anywhere;">{{ nextName }}</span>
       </a>
     </nav>
   </main>
