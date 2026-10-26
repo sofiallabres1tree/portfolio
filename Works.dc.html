@@ -94,7 +94,7 @@
                 <span style="position: absolute; left: {{ l.r }}%; top: 50%; width: {{ l.len }}%; height: 3px; margin-top: -1.5px; background: #e8402a; opacity: {{ l.o }};"></span>
               </span>
             </sc-for>
-            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: {{ c.labelO }}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #14130f;">{{ c.num }}</span>
+            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: {{ c.labelO }}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #f7f1c9;">{{ c.num }}</span>
             <span style="position: absolute; inset: 0; pointer-events: none; opacity: {{ c.labelO }};">{{ c.arc }}</span>
           </a>
         </sc-for>
@@ -134,11 +134,10 @@ const CATS = [
     { title: "Gaza Genocide Article", date: "May 2026", img: U + "1790202412238-aaow.png" },
   ]},
 ];
-const COLORS = { "textiles": "#f5d546", "ui-ux": "#c8378f", "sculptures": "#4f7fd9", "fine-art": "#f6c3d3", "graphic-design": "#7d8a3c" };
+const COLORS = { "textiles": "#075443", "ui-ux": "#A8442B", "sculptures": "#686A35", "fine-art": "#204DB5", "graphic-design": "#76245D" };
 const POS = [[50, 19], [79, 44], [65, 79], [31, 79], [20, 43]];
 const N_LINES = 16;
-const LIGHT = { "textiles": true, "fine-art": true };
-const EDGE = { "textiles": "#c9a200", "ui-ux": "#9c2a6f", "sculptures": "#3560b5", "fine-art": "#d9809e", "graphic-design": "#5c6628" };
+const EDGE = { "textiles": "#043a2e", "ui-ux": "#7e321f", "sculptures": "#4b4d26", "fine-art": "#173a88", "graphic-design": "#561a44" };
 const E = React.createElement;
 function arcLabel(key, name) {
   const id = "arc-" + key;
@@ -189,7 +188,7 @@ class Component extends DCLogic {
           x: x0 + (50 - x0) * e, y: y0 + (50 - y0) * e,
           z: on ? 20 : 1,
           s,
-          o: (LIGHT[c.key] ? 0.85 : 0.55) - (LIGHT[c.key] ? 0.45 : 0.4) * grow,
+          o: 1 - 0.6 * grow,
           edge: EDGE[c.key], edgeO: on ? clamp(q / 0.1) * (1 - 0.6 * grow) : 0,
           groupO: active >= 0 && !on ? 1 - 0.8 * clamp(p / 0.6) : 1,
           labelO: 1 - clamp(q / 0.25),
