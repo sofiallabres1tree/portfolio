@@ -3,7 +3,7 @@
   window.__slCursor = true;
   const css = document.createElement("style");
   css.textContent = "html, body, a, button, * { cursor: none !important; }" +
-    "#sl-cursor { position: fixed; left: 0; top: 0; z-index: 2147483647; pointer-events: none; width: 44px; height: 44px; opacity: 0; transition: opacity 0.2s ease; will-change: transform; }" +
+    "#sl-cursor { position: fixed; left: 0; top: 0; z-index: 2147483647; pointer-events: none; width: 44px; height: 44px; opacity: 0; transition: opacity 0.12s ease; will-change: transform; }" +
     "#sl-cursor i { position: absolute; border-radius: 50%; display: block; }" +
     "#sl-cursor .b { left: 0; top: 0; width: 34px; height: 34px; background: #ff7300; }" +
     "#sl-cursor .s { left: 22px; top: 25px; width: 13px; height: 13px; background: #0077ff; }";
@@ -34,17 +34,38 @@
     }
     return false;
   };
-  let mx = 0, my = 0, queued = false;
+  let mx = -100, my = -100, inside = false, queued = false, lastCheck = 0, timer = 0;
+  const place = () => { el.style.transform = "translate3d(" + (mx - 17) + "px," + (my - 17) + "px,0)"; };
   const update = () => {
-    queued = false;
+    queued = false; lastCheck = performance.now();
+    if (!inside) return;
     const t = document.elementFromPoint(mx, my);
     el.style.opacity = (t && overContent(t)) || hitText(mx, my) ? "0.45" : "1";
   };
-  window.addEventListener("mousemove", (e) => {
-    mx = e.clientX; my = e.clientY;
-    el.style.transform = "translate3d(" + (mx - 17) + "px," + (my - 17) + "px,0)";
-    if (!queued) { queued = true; requestAnimationFrame(update); }
-  }, { passive: true });
-  window.addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
-  document.addEventListener("mouseleave", () => { el.style.opacity = "0"; });
+  // The text check walks the page, so run it at most every 60ms instead of every frame.
+  const schedule = () => {
+    if (queued) return;
+    queued = true;
+    const wait = 60 - (performance.now() - lastCheck);
+    if (wait > 0) { clearTimeout(timer); timer = setTimeout(() => requestAnimationFrame(update), wait); }
+    else requestAnimationFrame(update);
+  };
+  const show = (e) => {
+    mx = e.clientX; my = e.clientY; place();
+    if (!inside) {
+      // Re-entering the window: jump straight to the pointer and show it at once, no fade.
+      inside = true;
+      el.style.transition = "none"; el.style.opacity = "1";
+      void el.offsetWidth; el.style.transition = "";
+    }
+    schedule();
+  };
+  const hide = () => { inside = false; el.style.opacity = "0"; };
+  window.addEventListener("pointermove", show, { passive: true });
+  window.addEventListener("pointerover", show, { passive: true });
+  window.addEventListener("pointerdown", show, { passive: true });
+  window.addEventListener("scroll", () => { if (inside) schedule(); }, { passive: true });
+  document.documentElement.addEventListener("mouseleave", hide);
+  window.addEventListener("mouseout", (e) => { if (!e.relatedTarget) hide(); });
+  window.addEventListener("blur", hide);
 })();
