@@ -21,6 +21,7 @@
     .w-field { width: 100% !important; height: 100% !important; aspect-ratio: auto !important; }
     .w-dot { animation: w-pulse var(--dur) ease-in-out var(--delay) infinite; }
     .w-dot[data-on="1"] { animation-play-state: paused; }
+    .w-num { font-size: var(--num) !important; }
   }
   @media (prefers-reduced-motion: reduce) { .w-dot { animation: none !important; } }
 </style>
@@ -60,7 +61,7 @@
                 <span style="position: absolute; left: {{ l.r }}%; top: 50%; width: {{ l.len }}%; height: 3px; margin-top: -1.5px; background: #e8402a; opacity: {{ l.o }};"></span>
               </span>
             </sc-for>
-            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: {{ c.labelO }}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #f7f1c9;">{{ c.num }}</span>
+            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: {{ c.labelO }}; font-family: 'IBM Plex Mono', monospace; font-size: 11px; --num: {{ c.numFs }}; letter-spacing: 0.22em; color: #f7f1c9;" class="w-num">{{ c.num }}</span>
             <span style="position: absolute; inset: 0; pointer-events: none; opacity: {{ c.labelO }};">{{ c.arc }}</span>
           </a>
         </sc-for>
@@ -105,9 +106,28 @@ const CATS = [
 ];
 const COLORS = { "textiles": "#075443", "ui-ux": "#A8442B", "sculptures": "#686A35", "fine-art": "#204DB5", "graphic-design": "#76245D", "clothing": "#B8860B" };
 const POS = [[50, 18], [78, 33], [78, 65], [50, 80], [22, 65], [22, 33]];
-// Computer layout: [x %, y %, diameter in % of the field's height], scattered across the page
-const SCATTER = [[13, 30, 30], [45, 24, 34], [80, 26, 38], [86, 70, 30], [52, 70, 36], [19, 69, 34]];
-const jitter = () => (Math.random() - 0.5) * 4;
+// Computer layout. Circles are placed at random in a virtual field ASPECT times wider than tall,
+// with diameters sized by min(field height, field width / ASPECT), so shrinking the window scales
+// the gaps no faster than the circles and they never overlap.
+const ASPECT = 2.2;
+function scatter(n) {
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      const d = 0.26 + Math.random() * 0.14, r = d / 2, R = r * 1.5; // R: pulse + arc label clearance
+      let pick = null;
+      for (let k = 0; k < 300 && !pick; k++) {
+        const c = { d, R, x: R + Math.random() * (ASPECT - 2 * R), y: r * 1.12 + Math.random() * (1 - r * 1.12 - R) };
+        if (out.every((o) => Math.hypot(c.x - o.x, c.y - o.y) - c.R - o.R > 0.03)) pick = c;
+      }
+      if (!pick) break;
+      out.push(pick);
+    }
+    if (out.length === n) return out;
+  }
+  return Array.from({ length: n }, (_, i) => ({ d: 0.26, x: (0.5 + (i % 3)) * ASPECT / 3, y: i < 3 ? 0.27 : 0.7 }));
+}
+
 const N_LINES = 16;
 const EDGE = { "textiles": "#043a2e", "ui-ux": "#7e321f", "sculptures": "#4b4d26", "fine-art": "#173a88", "graphic-design": "#561a44", "clothing": "#87620a" };
 const E = React.createElement;
@@ -149,7 +169,8 @@ class Component extends DCLogic {
   componentWillUnmount() { cancelAnimationFrame(this.raf); this.mq.removeEventListener("change", this.onMq); }
   renderVals() {
     const { active, p, wide } = this.state;
-    this.spots = this.spots || SCATTER.map(([x, y, d]) => [x + jitter(), y + jitter(), d, 6 + Math.random() * 3, -Math.random() * 8]);
+    this.spots = this.spots || scatter(CATS.length).map((c) => [c.x / ASPECT * 100, c.y * 100, c.d * 100, 6 + Math.random() * 3, -Math.random() * 8]);
+    const fit = (k) => "min(" + (k).toFixed(2) + "cqh, " + (k / ASPECT).toFixed(2) + "cqw)";
     return {
       cats: CATS.map((c, n) => {
         const on = n === active, q = on ? p : 0;
@@ -165,7 +186,8 @@ class Component extends DCLogic {
           x: x0 + (50 - x0) * e, y: y0 + (50 - y0) * e,
           z: on ? 20 : 1,
           on: on ? 1 : 0,
-          w: wide ? this.spots[n][2] + "cqh" : "27%",
+          w: wide ? fit(this.spots[n][2]) : "27%",
+          numFs: fit(this.spots[n][2] * 0.14),
           dur: this.spots[n][3].toFixed(2), delay: this.spots[n][4].toFixed(2),
           s,
           o: 1 - 0.6 * grow,
