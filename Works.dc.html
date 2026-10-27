@@ -111,10 +111,12 @@ const POS = [[50, 18], [78, 33], [78, 65], [50, 80], [22, 65], [22, 33]];
 // the gaps no faster than the circles and they never overlap.
 const ASPECT = 2.2;
 function scatter(n) {
-  for (let attempt = 0; attempt < 200; attempt++) {
+  // Sizes spread from small to large (with a little jitter), placed largest first so they pack
+  const sizes = Array.from({ length: n }, (_, i) => 0.2 + (0.26 * i) / (n - 1)).reverse();
+  for (let attempt = 0; attempt < 600; attempt++) {
     const out = [];
     for (let i = 0; i < n; i++) {
-      const d = 0.26 + Math.random() * 0.14, r = d / 2, R = r * 1.5; // R: pulse + arc label clearance
+      const d = sizes[i] + (Math.random() - 0.5) * 0.04, r = d / 2, R = r * 1.5; // R: pulse + arc label clearance
       let pick = null;
       for (let k = 0; k < 300 && !pick; k++) {
         const c = { d, R, x: R + Math.random() * (ASPECT - 2 * R), y: r * 1.12 + Math.random() * (1 - r * 1.12 - R) };
@@ -123,7 +125,10 @@ function scatter(n) {
       if (!pick) break;
       out.push(pick);
     }
-    if (out.length === n) return out;
+    if (out.length === n) {
+      for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
+      return out;
+    }
   }
   return Array.from({ length: n }, (_, i) => ({ d: 0.26, x: (0.5 + (i % 3)) * ASPECT / 3, y: i < 3 ? 0.27 : 0.7 }));
 }
