@@ -16,6 +16,13 @@
   * { box-sizing: border-box; }
   a { color: #14130f; text-decoration: none; }
   a:hover { color: #14130f; }
+  @keyframes w-pulse { 0%, 100% { scale: 0.86; } 50% { scale: 1.1; } }
+  @media (min-width: 601px) {
+    .w-field { width: 100% !important; height: 100% !important; aspect-ratio: auto !important; }
+    .w-dot { animation: w-pulse var(--dur) ease-in-out var(--delay) infinite; }
+    .w-dot[data-on="1"] { animation-play-state: paused; }
+  }
+  @media (prefers-reduced-motion: reduce) { .w-dot { animation: none !important; } }
 </style>
 <script src="./cursor.js"></script>
 </helmet>
@@ -43,9 +50,9 @@
     </h1>
 
     <div style="flex: 1; min-height: 0; margin-top: clamp(12px, 2.4vh, 36px); border-top: 1px solid #14130f; padding-top: clamp(8px, 1.6vh, 24px); display: flex; justify-content: center; container-type: size;">
-      <div style="position: relative; width: min(100cqw, calc(100cqh - clamp(8px, 1.6vh, 24px)), 760px); aspect-ratio: 1;">
+      <div class="w-field" style="position: relative; width: min(100cqw, calc(100cqh - clamp(8px, 1.6vh, 24px)), 760px); aspect-ratio: 1;">
         <sc-for list="{{ cats }}" as="c" hint-placeholder-count="0">
-          <a href="{{ c.href }}" aria-label="{{ c.name }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position: absolute; left: {{ c.x }}%; top: {{ c.y }}%; width: 27%; aspect-ratio: 1; transform: translate(-50%, -50%); z-index: {{ c.z }}; opacity: {{ c.groupO }};">
+          <a class="w-dot" data-on="{{ c.on }}" href="{{ c.href }}" aria-label="{{ c.name }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="--dur: {{ c.dur }}s; --delay: {{ c.delay }}s; position: absolute; left: {{ c.x }}%; top: {{ c.y }}%; width: {{ c.w }}; aspect-ratio: 1; transform: translate(-50%, -50%); z-index: {{ c.z }}; opacity: {{ c.groupO }};">
             <span style="position: absolute; inset: 0; border-radius: 50%; background: {{ c.color }}; opacity: {{ c.o }}; transform: scale({{ c.s }}); pointer-events: none;"></span>
             <span style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid {{ c.edge }}; opacity: {{ c.edgeO }}; transform: scale({{ c.s }}); pointer-events: none;"></span>
             <sc-for list="{{ c.lines }}" as="l" hint-placeholder-count="0">
@@ -98,6 +105,9 @@ const CATS = [
 ];
 const COLORS = { "textiles": "#075443", "ui-ux": "#A8442B", "sculptures": "#686A35", "fine-art": "#204DB5", "graphic-design": "#76245D", "clothing": "#B8860B" };
 const POS = [[50, 18], [78, 33], [78, 65], [50, 80], [22, 65], [22, 33]];
+// Computer layout: [x %, y %, diameter in % of the field's height], scattered across the page
+const SCATTER = [[13, 30, 30], [45, 24, 34], [80, 26, 38], [86, 70, 30], [52, 70, 36], [19, 69, 34]];
+const jitter = () => (Math.random() - 0.5) * 4;
 const N_LINES = 16;
 const EDGE = { "textiles": "#043a2e", "ui-ux": "#7e321f", "sculptures": "#4b4d26", "fine-art": "#173a88", "graphic-design": "#561a44", "clothing": "#87620a" };
 const E = React.createElement;
@@ -115,6 +125,10 @@ class Component extends DCLogic {
   state = { active: -1, p: 0 };
   componentDidMount() {
     this.target = -1;
+    this.mq = window.matchMedia("(min-width: 601px)");
+    this.onMq = () => this.setState({ wide: this.mq.matches });
+    this.mq.addEventListener("change", this.onMq);
+    this.onMq();
     let last = performance.now();
     const tick = (now) => {
       const dt = Math.min(64, now - last); last = now;
@@ -132,15 +146,16 @@ class Component extends DCLogic {
     };
     this.raf = requestAnimationFrame(tick);
   }
-  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); this.mq.removeEventListener("change", this.onMq); }
   renderVals() {
-    const { active, p } = this.state;
+    const { active, p, wide } = this.state;
+    this.spots = this.spots || SCATTER.map(([x, y, d]) => [x + jitter(), y + jitter(), d, 6 + Math.random() * 3, -Math.random() * 8]);
     return {
       cats: CATS.map((c, n) => {
         const on = n === active, q = on ? p : 0;
         const burst = clamp(q / 0.3), grow = clamp((q - 0.3) / 0.7);
         const s = 1 + 0.35 * easeOutBack(burst) + 13 * Math.pow(grow, 2.2);
-        const [x0, y0] = POS[n], e = grow * grow;
+        const [x0, y0] = wide ? this.spots[n] : POS[n], e = grow * grow;
         const lo = q === 0 ? 0 : 0.5 * clamp(q / 0.08) * (1 - 0.5 * grow);
         return {
           name: c.name,
@@ -149,6 +164,9 @@ class Component extends DCLogic {
           href: "Category.dc.html?c=" + c.key,
           x: x0 + (50 - x0) * e, y: y0 + (50 - y0) * e,
           z: on ? 20 : 1,
+          on: on ? 1 : 0,
+          w: wide ? this.spots[n][2] + "cqh" : "27%",
+          dur: this.spots[n][3].toFixed(2), delay: this.spots[n][4].toFixed(2),
           s,
           o: 1 - 0.6 * grow,
           edge: EDGE[c.key], edgeO: on ? clamp(q / 0.1) * (1 - 0.6 * grow) : 0,
