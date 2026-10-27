@@ -219,6 +219,9 @@ const CATS = [
     { title: "Abstract Ideation", desc: "I was exploring color, form, and shape on Adobe Illustrator.", size: "", imgs: ["works/graphic-design/abstract-1.png", "works/graphic-design/abstract-2.png", "works/graphic-design/abstract-3.png"] },
     { title: "UCLA Map", desc: "A colorful map to direct new students around campus and help them find water and food sources.", size: "", imgs: ["works/graphic-design/ucla-map.png"] },
   ]},
+  { key: "clothing", name: "Clothing", items: [
+    { title: "Summer Sun Collection", desc: "I designed a collection of clothing inspired by the freedom of summer. I hand crocheted each piece and created my own patterns. The yarn used is cotton and mohair.", size: "", imgs: ["works/clothing/summer-sun-collection.webp"], maxW: "760px", blend: true },
+  ]},
 ];
 const CUT = {
   "work-fine-art-venus": "works/cut/work-fine-art-venus.webp",
@@ -332,7 +335,7 @@ class Component extends DCLogic {
           anim: !!p.anim, book: !!p.book, ppt: p.title === "Paper Past Times",
           frames: p.anim ? [1, 2, 3, 4, 5].map((n) => ({ src: "works/sourdo/frame-" + n + ".png", alt: p.title + " opening, frame " + n, o: (this.state.bowl || 0) === n - 1 ? 1 : 0 })) : [],
           matcha: p.title === "Matchbook Matcha", manta: p.title === "Manta Ray",
-          hasImgs: !!p.imgs, imgList: (p.imgs || []).map((u, k) => ({ el: React.createElement("img", { src: u, alt: p.title + " " + (k + 1), style: { display: "block", width: "100%", height: "auto" } }) })),
+          hasImgs: !!p.imgs, imgList: (p.imgs || []).map((u, k) => { const img = React.createElement("img", { src: u, alt: p.title + " " + (k + 1), style: { display: "block", width: "100%", height: "auto", mixBlendMode: p.blend ? "multiply" : "normal" } }); return { el: p.blend ? React.createElement("div", { style: { background: "#f7f1c9" } }, img) : img }; }),
           imgCols: p.imgs && p.imgs.length > 1 ? "repeat(" + p.imgs.length + ", minmax(0, 1fr))" : "minmax(0, 1fr)", imgMaxW: p.maxW || "100%",
           filled: c.key !== "ui-ux" && !p.anim && !p.book && !p.imgs && p.title !== "Matchbook Matcha" && p.title !== "Manta Ray" && !!src, unfilled: c.key !== "ui-ux" && !p.anim && !p.book && !p.imgs && p.title !== "Matchbook Matcha" && p.title !== "Manta Ray" && !src,
           pic: src ? React.createElement("img", { src, alt: p.title, style: { width: "100%", height: "auto", display: "block" } }) : null,

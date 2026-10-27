@@ -33,7 +33,7 @@
   </header>
 
   <main style="position: relative; z-index: 2; flex: 1; min-height: 0; display: flex; flex-direction: column; padding: clamp(4px, 1vh, 14px) clamp(18px, 4vw, 54px) clamp(10px, 2vh, 24px);">
-    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">02 / Works &mdash; five disciplines</p>
+    <p style="margin: 0 0 clamp(8px, 1vw, 14px); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #8a8262;">02 / Works &mdash; six disciplines</p>
     <h1 style="margin: 0; display: flex; align-items: flex-end; font-size: max(52px, min(14vw, 17vh, 220px)); font-weight: 500; line-height: 0.82; letter-spacing: -0.055em; color: #E25600;">
       <span style="display: inline-block; transform: translateY(-0.05em);">w</span>
       <span style="display: inline-block; transform: translateY(0.05em);">o</span>
@@ -92,11 +92,14 @@ const CATS = [
     { title: "Masks", date: "January 2025", img: U + "1790202401547-4vcl.png" },
     { title: "Gaza Genocide Article", date: "May 2026", img: U + "1790202412238-aaow.png" },
   ]},
+  { key: "clothing", name: "Clothing", items: [
+    { title: "Summer Sun Collection", date: "", img: "works/clothing/summer-sun-collection.webp" },
+  ]},
 ];
-const COLORS = { "textiles": "#075443", "ui-ux": "#A8442B", "sculptures": "#686A35", "fine-art": "#204DB5", "graphic-design": "#76245D" };
-const POS = [[50, 19], [79, 44], [65, 79], [31, 79], [20, 43]];
+const COLORS = { "textiles": "#075443", "ui-ux": "#A8442B", "sculptures": "#686A35", "fine-art": "#204DB5", "graphic-design": "#76245D", "clothing": "#B8860B" };
+const POS = [[50, 18], [78, 33], [78, 65], [50, 80], [22, 65], [22, 33]];
 const N_LINES = 16;
-const EDGE = { "textiles": "#043a2e", "ui-ux": "#7e321f", "sculptures": "#4b4d26", "fine-art": "#173a88", "graphic-design": "#561a44" };
+const EDGE = { "textiles": "#043a2e", "ui-ux": "#7e321f", "sculptures": "#4b4d26", "fine-art": "#173a88", "graphic-design": "#561a44", "clothing": "#87620a" };
 const E = React.createElement;
 function arcLabel(key, name) {
   const id = "arc-" + key;
