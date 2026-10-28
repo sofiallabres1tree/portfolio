@@ -157,9 +157,9 @@
             </sc-if>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-top: {{ p.descGap }}; font-family: 'IBM Plex Mono', monospace; color: #14130f; text-align: {{ p.descAlign }};">
               <sc-if value="{{ p.size }}" hint-placeholder-val="{{ false }}">
-                <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">{{ p.size }}</span>
+                <span style="font-size: clamp(12px, 0.95vw, 14px); letter-spacing: 0.2em; text-transform: uppercase;">{{ p.size }}</span>
               </sc-if>
-              <p style="margin: 0; font-size: 13px; line-height: 1.65; text-wrap: pretty;">{{ p.desc }}</p>
+              <p style="margin: 0; font-size: clamp(16px, 1.4vw, 20px); line-height: 1.6; text-wrap: pretty;">{{ p.desc }}</p>
             </div>
           </article>
         </sc-for>
@@ -220,7 +220,7 @@ const CATS = [
     { title: "UCLA Map", desc: "A colorful map to direct new students around campus and help them find water and food sources.", size: "", imgs: ["works/graphic-design/ucla-map.png"] },
   ]},
   { key: "clothing", name: "Clothing", items: [
-    { title: "Summer Sun Collection", desc: "I designed a collection of clothing inspired by the freedom of summer. I hand crocheted each piece and created my own patterns. The yarn used is cotton and mohair.", size: "", imgs: ["works/clothing/summer-sun-collection-2.webp"], maxW: "760px", blend: true },
+    { title: "Summer Sun Collection", desc: "I designed a collection of clothing inspired by the freedom of summer. I hand crocheted each piece and created my own patterns. The yarn used is cotton and mohair.", size: "", imgs: ["works/clothing/summer-sun-collection-2.webp"], maxW: "1100px", blend: true },
   ]},
 ];
 const CUT = {
